@@ -6,7 +6,7 @@
 #    By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/10/03 18:32:42 by jpedro-f         ###   ########.fr        #
+#    Updated: 2025/10/18 18:41:57 by jpedro-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,11 @@ MLX_DIR = ./minilibx
 MLX = ./minilibx/minilibx.a
 
 SRCS_DIR = ./srcs/
-SRCS =	$(addprefix $(SRCS_DIR), main.c )
+SRCS =	$(addprefix $(SRCS_DIR), 	main.c \
+									init.c \
+									hooks.c \
+									render.c \
+									draw.c)
 
 OBJS = $(SRCS:.c=.o)
 

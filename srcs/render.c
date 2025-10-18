@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/18 17:49:44 by jpedro-f         ###   ########.fr       */
+/*   Created: 2025/10/18 17:32:56 by jpedro-f          #+#    #+#             */
+/*   Updated: 2025/10/18 18:38:37 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int main (void)
-{
-	t_game	game;
 
-	init_game(&game);
-	mlx_hook(game.mlx_win, 2, 1L<<0, key_press, &game);
-	mlx_hook(game.mlx_win, 3, 1L<<1, key_release, &game);
-	mlx_loop_hook(game.mlx, game_loop, &game);	
-	mlx_loop(game.mlx);
-
-	return (0);
-}
+	
