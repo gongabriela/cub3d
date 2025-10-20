@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/18 19:11:04 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/20 17:06:08 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,40 @@
 
 #include "../minilibx/mlx.h"
 #include <stdbool.h>
+#include <math.h>
 
-
+#define	PI 3.14159265358979323846
 #define MAP_WIDTH 10
 #define MAP_HEIGHT 10
-
-
-
-typedef struct s_move 
-{
-	bool	w;
-	bool	a;
-	bool	s;
-	bool	d;
-	bool	left;
-	bool	right;
-}	t_move;
+#define W 119
+#define A 97
+#define S 115
+#define D 100
+#define LEFT_ARROW 65361
+#define RIGHT_ARROW 65363
+#define	ESC 65307
+#define SPEED 1
+#define ANGLE_SPEED 0.01
+#define BLOCK 50
+#define FOV 60
+#define NUM_RAYS 1280
+#define RAY_STEP 1
+#define DEBUG 1
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+#define PLAYER_RADIUS 10
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
+	float	angle;
+	bool	key_up;
+	bool	key_down;
+	bool	key_left;
+	bool	key_right;
+	bool	left_rotate;
+	bool	right_rotate;
 }	t_player;
 
 typedef struct s_img
@@ -53,14 +66,13 @@ typedef struct s_game
 	void		*mlx_win;
 	t_img		img;
 	t_player	player;
-	t_move		move;
+	int (*map)[MAP_WIDTH];
 }	t_game;
 
 
 // init.c
 void	init_img(t_game *game);
 void 	init_player(t_game *game);
-void	init_move(t_game *game);
 void 	init_game(t_game *game);
 
 // hooks.c
@@ -70,12 +82,20 @@ int 	game_loop(t_game *game);
 
 // draw.c
 void	pixel_put(t_game *game, int x, int y, int color);
+void 	clear_image(t_game *game, int color);
 void	draw_player(t_game *game);
 void	draw_square(t_game *game, int start_x, int start_y, int color);
 void	draw_map(t_game *game);
 
-// render.c
+// draw_2.c
+void 	draw_celling_floor(t_game *game);
 
+// ray_casting.c
+bool	touch(float px, float py, t_game *game);
+void 	ray_casting2D(t_game *game);
+void 	ray_casting3D(t_game *game);
+// player_utils.c
+void update_movement(t_game *game);
 
 
 

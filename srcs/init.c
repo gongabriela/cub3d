@@ -6,11 +6,24 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/18 17:07:50 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/20 15:04:14 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int map[MAP_HEIGHT][MAP_WIDTH] = {
+    {1,1,1,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,1},
+    {1,0,1,0,0,0,0,0,0,1},
+    {1,0,0,0,1,0,0,0,0,1},
+    {1,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,1},
+    {1,0,1,0,0,0,1,0,0,1},
+    {1,0,0,0,0,0,0,0,0,1},
+    {1,1,1,1,1,1,1,1,1,1}
+};
 
 void init_img(t_game *game)
 {
@@ -20,18 +33,16 @@ void init_img(t_game *game)
 
 void init_player(t_game *game) 
 {
-	game->player.x = 300;
-	game->player.y = 300;
-}
-
-void init_move(t_game *game)
-{
-	game->move.w = false;
-	game->move.a = false;
-	game->move.s = false;
-	game->move.d = false;
-	game->move.left = false;
-	game->move.right = false;
+	game->player.x = 3.5 * BLOCK;
+	game->player.y = 3.5 * BLOCK;
+	game->player.angle = PI / 2;
+	game->player.angle = 1;
+	game->player.key_up = false;
+	game->player.key_down = false;
+	game->player.key_left = false;
+	game->player.key_right = false;
+	game->player.left_rotate = false;
+	game->player.right_rotate= false;
 }
 
 void init_game(t_game *game)
@@ -40,6 +51,5 @@ void init_game(t_game *game)
 	game->mlx_win = mlx_new_window(game->mlx, 1280, 720, "cub3d");
 	init_img(game);
 	init_player(game);
-	init_move(game);
-
+	game->map = map;
 }
