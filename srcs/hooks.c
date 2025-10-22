@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:22:21 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/20 16:04:04 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/22 15:49:18 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int key_release(int keycode, t_game *game)
 
 int game_loop(t_game *game)
 {
+	double	fps = 0;
+	calculate_fps(&fps);
 	clear_image(game, 0x000000);
 	draw_celling_floor(game);
 	update_movement(game);
@@ -60,5 +62,6 @@ int game_loop(t_game *game)
 	else
 		ray_casting3D(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img.img, 0, 0);
+	draw_fps(game, fps);
 	return (0);	
 }
