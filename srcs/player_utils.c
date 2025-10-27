@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:03:26 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/22 14:41:07 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:20:54 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void check_key(t_game *game, float *next_x, float *next_y, float cos_angle, floa
 
 bool can_move(float next_x, float next_y, t_game *game)
 {
-	if (touch(next_x, next_y, game))
+	if (touch(next_x - PLAYER_RADIUS, next_y - PLAYER_RADIUS, game))
 		return false;
-	if (touch(next_x, next_y, game))
+	if (touch(next_x + PLAYER_RADIUS, next_y + PLAYER_RADIUS, game))
 		return false;
-	if (touch(next_x, next_y, game))
+	if (touch(next_x - PLAYER_RADIUS, next_y + PLAYER_RADIUS, game))
 		return false;
-	if (touch(next_x, next_y, game))
+	if (touch(next_x + PLAYER_RADIUS, next_y - PLAYER_RADIUS, game))
 		return false;
 	return true;
 }

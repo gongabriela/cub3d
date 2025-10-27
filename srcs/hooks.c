@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:22:21 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/22 15:49:18 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/27 13:22:28 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int game_loop(t_game *game)
 		ray_casting2D(game);
 	}
 	else
-		ray_casting3D(game);
+		ray_casting(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img.img, 0, 0);
 	draw_fps(game, fps);
 	return (0);	

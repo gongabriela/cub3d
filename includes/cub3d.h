@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/22 15:48:21 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:02:10 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 #define LEFT_ARROW 65361
 #define RIGHT_ARROW 65363
 #define	ESC 65307
-#define SPEED 2
-#define ANGLE_SPEED 0.05
+#define SPEED 0.5
+#define ANGLE_SPEED 0.02
 #define BLOCK 50
 #define FOV 60
 #define NUM_RAYS 1280
@@ -40,6 +40,38 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 #define PLAYER_RADIUS 10
+
+typedef struct s_texture
+{
+	void 	*img;
+	int		*data;
+	int		width;
+	int		height;
+	int		line_lenght;
+	int		bits_per_pixel;
+	int		endian;
+}	t_texture;
+
+
+typedef struct s_raycasting
+{
+	float	angle_step;
+	float	ray_angle;
+	float	posX;
+	float	posY;
+	float	rayDirX;
+	float	rayDirY;
+	int		mapX;
+	int		mapY;
+	float	deltaDistX;
+	float	deltaDistY;
+	float	sideDistX;
+	float	sideDistY;
+	int		stepX;
+	int		stepY;
+	int		side;
+	float	distance;
+}	t_raycasting;
 
 typedef struct s_player
 {
@@ -65,11 +97,13 @@ typedef struct s_img
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*mlx_win;
-	t_img		img;
-	t_player	player;
-	int (*map)[MAP_WIDTH];
+	void			*mlx;
+	void			*mlx_win;
+	t_img			img;
+	t_player		player;
+	t_raycasting 	raycasting;
+	t_texture		wall_texture;
+	int 			(*map)[MAP_WIDTH];
 }	t_game;
 
 
@@ -96,7 +130,7 @@ void 	draw_celling_floor(t_game *game);
 // ray_casting.c
 bool	touch(float px, float py, t_game *game);
 void 	ray_casting2D(t_game *game);
-void 	ray_casting3D(t_game *game);
+void 	ray_casting(t_game *game);
 
 // player_utils.c
 void update_movement(t_game *game);
