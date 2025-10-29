@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/27 16:05:15 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:27:22 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ int map[MAP_HEIGHT][MAP_WIDTH] = {
     {1,1,1,1,1,1,1,1,1,1}
 };
 
-void init_img(t_game *game)
+void	init_img(t_game *game)
 {
 	game->img.img = mlx_new_image(game->mlx, 1280, 720);
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
+	game->img.addr = mlx_get_data_addr(game->img.img,
+			&game->img.bits_per_pixel, &game->img.line_length,
+			&game->img.endian);
 }
 
-void init_player(t_game *game) 
+void	init_player(t_game *game)
 {
 	game->player.x = 3.5 * BLOCK;
 	game->player.y = 3.5 * BLOCK;
@@ -41,44 +43,48 @@ void init_player(t_game *game)
 	game->player.key_left = false;
 	game->player.key_right = false;
 	game->player.left_rotate = false;
-	game->player.right_rotate= false;
+	game->player.right_rotate = false;
 }
 
-void init_raycasting(t_game *game)
+void	init_raycasting(t_game *game)
 {
-	game->raycasting.angle_step = (FOV * PI / 180) / NUM_RAYS;
-	game->raycasting.ray_angle = 0;
-	game->raycasting.posX = 0;
-	game->raycasting.posY = 0;
-	game->raycasting.rayDirX = 0;
-	game->raycasting.rayDirY = 0;
-	game->raycasting.mapX = 0;
-	game->raycasting.mapY = 0;
-	game->raycasting.deltaDistX = 0;
-	game->raycasting.deltaDistY = 0;
-	game->raycasting.sideDistX = 0;
-	game->raycasting.sideDistY = 0;
-	game->raycasting.stepX = 0;
-	game->raycasting.stepY = 0;
-	game->raycasting.side = 0;
-	game->raycasting.distance = 0;
+	game->r.angle_step = (FOV * PI / 180) / NUM_RAYS;
+	game->r.ray_angle = 0;
+	game->r.posx = 0;
+	game->r.posy = 0;
+	game->r.raydirx = 0;
+	game->r.raydiry = 0;
+	game->r.mapx = 0;
+	game->r.mapy = 0;
+	game->r.deltadistx = 0;
+	game->r.deltadisty = 0;
+	game->r.sidedistx = 0;
+	game->r.sidedisty = 0;
+	game->r.stepx = 0;
+	game->r.stepy = 0;
+	game->r.side = 0;
+	game->r.distance = 0;
 }
 
-void load_wall_texture(t_game *game)
+void	load_wall_texture(t_game *game)
 {
-	int width;
-	int height;
-	char *path = "textures/wall.xpm";
+	int		width;
+	int		height;
+	char	*path;
 
 	width = 0;
 	height = 0;
-	game->wall_texture.img = mlx_xpm_file_to_image(game->mlx, path, &width, &height);
-	game->wall_texture.data = (int *)mlx_get_data_addr(game->wall_texture.img, &game->wall_texture.bits_per_pixel, &game->wall_texture.line_lenght, &game->wall_texture.endian);
+	path = "textures/wall.xpm";
+	game->wall_texture.img = mlx_xpm_file_to_image(game->mlx,
+			path, &width, &height);
+	game->wall_texture.data = (int *)mlx_get_data_addr(game->wall_texture.img,
+			&game->wall_texture.bits_per_pixel,
+			&game->wall_texture.line_lenght, &game->wall_texture.endian);
 	game->wall_texture.height = height;
 	game->wall_texture.width = width;
 }
 
-void init_game(t_game *game)
+void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, 1280, 720, "cub3d");

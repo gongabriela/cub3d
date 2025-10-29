@@ -6,7 +6,7 @@
 #    By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/10/22 15:45:13 by jpedro-f         ###   ########.fr        #
+#    Updated: 2025/10/29 13:34:16 by jpedro-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,11 @@ SRCS =	$(addprefix $(SRCS_DIR), 	main.c \
 									init.c \
 									hooks.c \
 									ray_casting.c \
-									draw.c \
-									draw_2.c \
+									draw_utils.c \
+									draw_3d.c \
 									player_utils.c \
+									debug_2d.c \
+									debug_draw.c \
 									fps.c)
 
 OBJS = $(SRCS:.c=.o)

@@ -1,46 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   debug_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 18:24:58 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/20 15:27:19 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/29 13:38:16 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void pixel_put(t_game *game, int x, int y, int color)
-{
-	char *dst;
-	
-	if (x < 0 || x >= 1280 || y < 0 || y >= 720)
-		return;
-	dst = game->img.addr + (y * game->img.line_length + x * (game->img.bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-void clear_image(t_game *game, int color)
-{
-    int i = 0;
-    int total_pixels = 1280 * 720;
-    unsigned int *pixel = (unsigned int *)game->img.addr;
-
-    while (i < total_pixels)
-    {
-        pixel[i] = color;
-        i++;
-    }
-}
-
 void	draw_player(t_game *game)
 {
-	int size = 10;
-	int y; 
-	int x;
+	int	size;
+	int	y;
+	int	x;
 
+	size = 10;
 	y = (int)game->player.y - size / 2;
 	while (y < (int)game->player.y + size / 2)
 	{
@@ -54,10 +32,10 @@ void	draw_player(t_game *game)
 	}
 }
 
-void draw_square(t_game *game, int start_x, int start_y, int color)
+void	draw_square(t_game *game, int start_x, int start_y, int color)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = start_y;
 	while (y < start_y + BLOCK)
@@ -72,12 +50,12 @@ void draw_square(t_game *game, int start_x, int start_y, int color)
 	}
 }
 
-void draw_map(t_game *game)
+void	draw_map(t_game *game)
 {
-	int x;
-	int y;
-	int i;
-	int j;
+	int	x;
+	int	y;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < MAP_HEIGHT)
