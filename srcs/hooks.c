@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:22:21 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 13:58:24 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/29 15:51:28 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	key_press(int keycode, t_game *game)
 		game->player.left_rotate = true;
 	if (keycode == RIGHT_ARROW)
 		game->player.right_rotate = true;
+	if (keycode == ESC)
+		handle_close(game);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 14:27:25 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/29 15:59:33 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_texture
 	int		*data;
 	int		width;
 	int		height;
-	int		line_lenght;
+	int		line_length;
 	int		bits_per_pixel;
 	int		endian;
 }	t_texture;
@@ -160,5 +160,9 @@ void		update_raycasting_values(t_game *game, int i);
 void		init_step_and_sidedist(t_game *game);
 void		perform_dda(t_game *g);
 void		ray_casting(t_game *game);
+
+// main.c
+int			handle_close(void *param);
+int			game_loop(t_game *game);
 
 #endif

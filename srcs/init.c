@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 14:27:22 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:00:33 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	load_wall_texture(t_game *game)
 			path, &width, &height);
 	game->wall_texture.data = (int *)mlx_get_data_addr(game->wall_texture.img,
 			&game->wall_texture.bits_per_pixel,
-			&game->wall_texture.line_lenght, &game->wall_texture.endian);
+			&game->wall_texture.line_length, &game->wall_texture.endian);
 	game->wall_texture.height = height;
 	game->wall_texture.width = width;
 }
