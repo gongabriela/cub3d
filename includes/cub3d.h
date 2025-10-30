@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 15:59:33 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/30 16:53:19 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
 # define ESC 65307
-# define SPEED 2
-# define ANGLE_SPEED 0.05
+# define SPEED 3
+# define ANGLE_SPEED 0.07
 # define BLOCK 50
 # define FOV 60
 # define NUM_RAYS 1280
@@ -58,6 +58,17 @@ typedef struct s_texture
 	int		bits_per_pixel;
 	int		endian;
 }	t_texture;
+
+typedef struct s_map
+{
+	int			(*map)[MAP_WIDTH];
+	char		*n_path;
+	char		*s_path;
+	char		*e_path;
+	char		*w_path;
+	int			c_rgb[3];
+	int			f_rgb[3];
+}	t_map;
 
 typedef struct s_raycasting
 {
@@ -108,8 +119,13 @@ typedef struct s_game
 	t_img			img;
 	t_player		player;
 	t_raycasting	r;
-	t_texture		wall_texture;
-	int				(*map)[MAP_WIDTH];
+	// t_map			map;
+	t_texture		wall_texture; // delete 
+	int				(*map)[MAP_WIDTH]; // delete
+	t_texture		n;
+	t_texture		s;
+	t_texture		e;
+	t_texture		w;
 }	t_game;
 
 // debug_2d.c

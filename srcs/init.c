@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 16:00:33 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/30 16:50:02 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	load_wall_texture(t_game *game)
 	game->wall_texture.width = width;
 }
 
+
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -93,4 +94,10 @@ void	init_game(t_game *game)
 	load_wall_texture(game);
 	init_raycasting(game);
 	game->map = map;
+	// init_textures(game);
+	// init_map(&game->map);  // delete
+	// init_texture(game, &game->n, game->map.n_path);
+	// init_texture(game, &game->s, game->map.s_path);
+	// init_texture(game, &game->e ,game->map.e_path);
+	// init_texture(game, &game->w, game->map.w_path);
 }

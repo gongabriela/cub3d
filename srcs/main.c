@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 16:02:42 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/10/30 16:44:37 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int	handle_close(void *param)
 	game = (t_game *)param;
 	if (game->mlx_win)
 	{
-		if (game->img.img)
-			mlx_destroy_image(game->mlx, game->img.img);
-		if (game->wall_texture.img)
-			mlx_destroy_image(game->mlx, game->wall_texture.img);
+		mlx_destroy_image(game->mlx, game->img.img);
+		mlx_destroy_image(game->mlx, game->n.img);
+		mlx_destroy_image(game->mlx, game->s.img);
+		mlx_destroy_image(game->mlx, game->e.img);
+		mlx_destroy_image(game->mlx, game->w.img);
 		mlx_destroy_window(game->mlx, game->mlx_win);
 	}
 	exit(0);
