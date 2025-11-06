@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:20:36 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 14:31:59 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:44:07 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,25 @@ void	draw_celling_floor(t_game *game)
 	}
 }
 
-int	get_tex_x(t_game *g)
+t_texture	*get_correct_texture(t_game *g)
+{
+	if (g->r.side == 0)
+	{
+		if (g->r.raydirx > 0)
+			return (&g->e);
+		else
+			return (&g->w);
+	}
+	else
+	{
+		if (g->r.raydiry > 0)
+			return (&g->s);
+		else
+			return (&g->n);
+	}
+}
+
+int	get_tex_x(t_game *g, t_texture *tex)
 {
 	float	hit;
 	int		tx;
@@ -51,14 +69,14 @@ int	get_tex_x(t_game *g)
 	else
 		hit = g->r.posx + g->r.distance / BLOCK * g->r.raydirx;
 	hit -= floor(hit);
-	tx = (int)(hit * g->wall_texture.width);
-	if ((g->r.side == 0 && g->r.raydirx > 0)
-		|| (g->r.side == 1 && g->r.raydiry < 0))
-		tx = g->wall_texture.width - tx - 1;
+	tx = (int)(hit * tex->width);
+	if ((g->r.side == 0 && g->r.raydirx < 0)
+		|| (g->r.side == 1 && g->r.raydiry > 0))
+		tx = tex->width - tx - 1;
 	return (tx);
 }
 
-void	draw_tex_column(t_game *g, int x, t_slice slice)
+void	draw_tex_column(t_game *g, int x, t_slice slice, t_texture *tex)
 {
 	int		y;
 	int		tx;
@@ -66,8 +84,8 @@ void	draw_tex_column(t_game *g, int x, t_slice slice)
 	float	step;
 	float	pos;
 
-	tx = get_tex_x(g);
-	step = (float)g->wall_texture.height / (float)slice.height;
+	tx = get_tex_x(g, tex);
+	step = (float)tex->height / (float)slice.height;
 	pos = (slice.start - SCREEN_HEIGHT / 2 + slice.height / 2) * step;
 	y = slice.start;
 	while (y <= slice.end)
@@ -76,7 +94,7 @@ void	draw_tex_column(t_game *g, int x, t_slice slice)
 		if (ty >= g->wall_texture.height)
 			ty = g->wall_texture.height - 1;
 		pixel_put(g, x, y,
-			g->wall_texture.data[ty * g->wall_texture.width + tx]);
+			tex->data[ty * tex->width + tx]);
 		pos += step;
 		y++;
 	}
@@ -84,7 +102,8 @@ void	draw_tex_column(t_game *g, int x, t_slice slice)
 
 void	draw_wall_slice_texture(t_game *g, int x, float dist)
 {
-	t_slice	slice;
+	t_slice		slice;
+	t_texture	*correct_texture;
 
 	if (dist < 0.0001f)
 		dist = 0.0001f;
@@ -96,7 +115,8 @@ void	draw_wall_slice_texture(t_game *g, int x, float dist)
 		slice.start = 0;
 	if (slice.end >= SCREEN_HEIGHT)
 		slice.end = SCREEN_HEIGHT - 1;
-	draw_tex_column(g, x, slice);
+	correct_texture = get_correct_texture(g);
+	draw_tex_column(g, x, slice, correct_texture);
 }
 
 float	correct_fisheye(float distance, float ray_angle, float player_angle)

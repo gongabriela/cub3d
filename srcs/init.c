@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/30 16:50:02 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:39:46 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,9 @@ void	init_game(t_game *game)
 	load_wall_texture(game);
 	init_raycasting(game);
 	game->map = map;
-	// init_textures(game);
-	// init_map(&game->map);  // delete
-	// init_texture(game, &game->n, game->map.n_path);
-	// init_texture(game, &game->s, game->map.s_path);
-	// init_texture(game, &game->e ,game->map.e_path);
-	// init_texture(game, &game->w, game->map.w_path);
+	init_map(&game->map_info);  // delete
+	init_texture(game, &game->n, game->map_info.n_path);
+	init_texture(game, &game->s, game->map_info.s_path);
+	init_texture(game, &game->e ,game->map_info.e_path);
+	init_texture(game, &game->w, game->map_info.w_path);
 }

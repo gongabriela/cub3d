@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/30 16:53:19 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:48:33 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
 # define ESC 65307
-# define SPEED 3
-# define ANGLE_SPEED 0.07
+# define SPEED 2.5
+# define ANGLE_SPEED 0.05
 # define BLOCK 50
-# define FOV 60
+# define FOV 50
 # define NUM_RAYS 1280
 # define RAY_STEP 1
 # define DEBUG 0
@@ -61,7 +61,7 @@ typedef struct s_texture
 
 typedef struct s_map
 {
-	int			(*map)[MAP_WIDTH];
+	// int			(*map)[MAP_WIDTH];
 	char		*n_path;
 	char		*s_path;
 	char		*e_path;
@@ -119,7 +119,7 @@ typedef struct s_game
 	t_img			img;
 	t_player		player;
 	t_raycasting	r;
-	// t_map			map;
+	t_map			map_info;
 	t_texture		wall_texture; // delete 
 	int				(*map)[MAP_WIDTH]; // delete
 	t_texture		n;
@@ -138,8 +138,9 @@ void		draw_map(t_game *game);
 
 // draw_3d.c
 void		draw_celling_floor(t_game *game);
-int			get_tex_x(t_game *g);
-void		draw_tex_column(t_game *g, int x, t_slice slice);
+t_texture	*get_correct_texture(t_game *g);
+int			get_tex_x(t_game *g, t_texture *tex);
+void		draw_tex_column(t_game *g, int x, t_slice slice, t_texture *tex);
 void		draw_wall_slice_texture(t_game *g, int x, float dist);
 float		correct_fisheye(float distance,
 				float ray_angle, float player_angle);
@@ -176,6 +177,10 @@ void		update_raycasting_values(t_game *game, int i);
 void		init_step_and_sidedist(t_game *game);
 void		perform_dda(t_game *g);
 void		ray_casting(t_game *game);
+
+// map_sim.c
+void init_map(t_map *map); // delete
+void init_texture(t_game *game, t_texture *t, char *path);
 
 // main.c
 int			handle_close(void *param);

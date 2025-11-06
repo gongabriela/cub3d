@@ -6,7 +6,7 @@
 #    By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/10/29 13:34:16 by jpedro-f         ###   ########.fr        #
+#    Updated: 2025/11/06 18:32:08 by jpedro-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS =	$(addprefix $(SRCS_DIR), 	main.c \
 									player_utils.c \
 									debug_2d.c \
 									debug_draw.c \
+									map_sim.c \
 									fps.c)
 
 OBJS = $(SRCS:.c=.o)
