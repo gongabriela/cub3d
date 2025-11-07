@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+         #
+#    By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/10/22 12:54:24 by ggoncalv         ###   ########.fr        #
+#    Updated: 2025/11/07 11:36:47 by ggoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ MLX_DIR = ./minilibx
 MLX = ./minilibx/minilibx.a
 
 SRCS_DIR = ./srcs/
-SRCS =	$(addprefix $(SRCS_DIR), main.c parser.c parser_colors.c parser_textures.c parser_map.c parser_utils.c)
+SRCS =	$(addprefix $(SRCS_DIR), main.c parser.c)
 
 OBJS = $(SRCS:.c=.o)
 
