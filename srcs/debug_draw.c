@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 18:24:58 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 13:38:16 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:22:07 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	draw_map(t_game *game)
 		{
 			x = j * BLOCK;
 			y = i * BLOCK;
-			if (game->map[i][j] == 1)
+			if (game->map_info.map[i][j] == 1)
 				draw_square(game, x, y, 0x888888);
 			j++;
 		}

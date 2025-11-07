@@ -6,23 +6,23 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 15:47:05 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:18:35 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 // int map[MAP_HEIGHT][MAP_WIDTH] = {
-//     {1,1,1,1,1,1,1,1,1,1},
+//     {0,0,0,1,1,1,1,1,1,1},
+//     {0,0,1,0,0,0,0,0,0,1},
+//     {0,1,0,0,0,0,0,0,0,1},
+//     {1,1,0,0,0,0,0,0,0,1},
 //     {1,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,1,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,1},
-//     {1,1,1,1,1,1,1,1,1,1}
+//     {1,0,0,0,1,0,0,1,1,1},
+//     {1,0,0,0,0,0,0,1,0,0},
+//     {1,0,0,0,1,1,1,1,0,0},
+//     {1,0,0,0,1,0,1,1,0,0},
+//     {1,1,1,1,1,0,1,1,0,0}
 // };
 
 void	init_img(t_game *game)
@@ -31,13 +31,21 @@ void	init_img(t_game *game)
 	game->img.addr = mlx_get_data_addr(game->img.img,
 			&game->img.bits_per_pixel, &game->img.line_length,
 			&game->img.endian);
+
 }
 
 void	init_player(t_game *game)
 {
-	game->player.x = 3.5 * BLOCK;
-	game->player.y = 3.5 * BLOCK;
-	game->player.angle = PI / 2;
+	game->player.x = game->map_info.player_pos[0] * BLOCK;
+	game->player.y = game->map_info.player_pos[1] * BLOCK;
+	if (game->map_info.player_ori == 'N')
+		game->player.angle = 3 * PI / 2;
+	else if (game->map_info.player_ori == 'S')
+		game->player.angle = PI / 2;
+	else if (game->map_info.player_ori == 'W')
+		game->player.angle = PI;
+	else if (game->map_info.player_ori == 'N')
+		game->player.angle = 0.0;
 	game->player.key_up = false;
 	game->player.key_down = false;
 	game->player.key_left = false;
@@ -66,18 +74,13 @@ void	init_raycasting(t_game *game)
 	game->r.distance = 0;
 }
 
-void init_texture(t_game *game, t_texture *t, char *path)
-{
-	t->img = mlx_xpm_file_to_image(game->mlx, path,  &t->width, &t->height);
-	t->data = (int *)mlx_get_data_addr(t->img, &t->bits_per_pixel, &t->line_length, &t->endian);
-}
-
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, 1280, 720, "cub3d");
 	init_img(game);
 	init_player(game);
+	load_wall_texture(game);
 	init_raycasting(game);
 	init_texture(game, &game->n, game->map_info.n_path);
 	init_texture(game, &game->s, game->map_info.s_path);

@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:20:36 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 15:23:55 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:37:53 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_celling_floor(t_game *game)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			pixel_put(game, x, y, 0x87CEEB);
+			pixel_put(game, x, y, game->c_color);
 			x++;
 		}
 		y++;
@@ -34,7 +34,7 @@ void	draw_celling_floor(t_game *game)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			pixel_put(game, x, y, 0x228B22);
+			pixel_put(game, x, y, game->f_color);
 			x++;
 		}
 		y++;

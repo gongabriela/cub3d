@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 15:47:07 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:35:48 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,15 @@ typedef struct s_texture
 
 typedef struct s_map
 {
-	int			*map[MAP_WIDTH];
+	int			**map;
 	char		*n_path;
 	char		*s_path;
 	char		*e_path;
 	char		*w_path;
 	int			c_rgb[3];
 	int			f_rgb[3];
+	int			player_pos[2];
+	char		player_ori;
 }	t_map;
 
 typedef struct s_raycasting
@@ -124,6 +126,8 @@ typedef struct s_game
 	t_texture		s;
 	t_texture		e;
 	t_texture		w;
+	int				c_color;
+	int				f_color;
 }	t_game;
 
 // debug_2d.c

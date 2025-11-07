@@ -6,11 +6,24 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:26:06 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 13:55:54 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:36:48 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	create_rgb(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
+}
+
+void	rgb_to_int(t_game *game)
+{
+	game->c_color = create_rgb(game->map_info.c_rgb[0],
+			game->map_info.c_rgb[1], game->map_info.c_rgb[2]);
+	game->f_color = create_rgb(game->map_info.f_rgb[0],
+			game->map_info.f_rgb[1], game->map_info.f_rgb[2]);
+}
 
 void	pixel_put(t_game *game, int x, int y, int color)
 {

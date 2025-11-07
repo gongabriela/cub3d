@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:06:37 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 14:31:22 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:19:09 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	perform_dda(t_game *g)
 		if (g->r.mapx < 0 || g->r.mapy < 0
 			|| g->r.mapx >= MAP_WIDTH || g->r.mapy >= MAP_HEIGHT)
 			break ;
-		if (g->map[g->r.mapy][g->r.mapx] == 1)
+		if (g->map_info.map[g->r.mapy][g->r.mapx] == 1)
 			break ;
 	}
 }
