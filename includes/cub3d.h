@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 16:41:43 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:10:04 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_texture
 
 typedef struct s_map
 {
+	char		*filename;
+	int			filename_fd;
 	int			**map;
 	char		*n_path;
 	char		*s_path;
@@ -184,7 +186,19 @@ void		ray_casting(t_game *game);
 
 
 // main.c
-int			handle_close(void *param);
-int			game_loop(t_game *game);
+void	init_struct(t_map *map_info);
+void	free_parsing(t_map *map_info);
+void	free_exit(char *msg, t_map *map_info, int code);
+
+// parser.c
+int		parser(int argc, char **argv, t_map *map_info);
+int		open_map(char *filename, t_map *map_info);
+int		parse_file(t_map *map_info);
+
+//parse_textures
+int		parse_textures(char *line, void *map_info, char **texture_path);
+int		open_file(char **texture_path);
+int     get_len(char *line);
+char    *get_texture_path(t_map *map_info, char *line, int len);
 
 #endif

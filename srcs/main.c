@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 15:47:06 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:12:24 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,45 @@ int	game_loop(t_game *game)
 	return (0);
 }
 
-int	main(void)
+void	init_struct(t_map *map_info)
+{
+	map_info->filename = NULL;
+	map_info->filename_fd = -1;
+	map_info->n_path = NULL;
+	map_info->s_path = NULL;
+	map_info->w_path = NULL;
+	map_info->e_path = NULL;
+}
+void	free_parsing(t_map *map_info)
+{
+	if (map_info->filename_fd != -1)
+		close(map_info->filename_fd);
+	if (map_info->n_path != NULL)
+		free(map_info->n_path);
+	if (map_info->s_path != NULL)
+		free(map_info->s_path);
+	if (map_info->w_path != NULL)
+		free(map_info->w_path);
+	if (map_info->e_path != NULL)
+		free(map_info->e_path);
+}
+
+void	free_exit(char *msg, t_map *map_info, int code)
+{
+	if (msg)
+    	printf("%s", msg);
+	free_parsing(map_info);
+	exit(code);
+}
+
+int	main(int argc, char **argv)
 {
 	t_game	game;
+	t_map	map_info;
 
+	init_struct(&map_info);
+	if (parser(argc, argv, &map_info))
+		free_exit(NULL, &map_info, 1);
 	game.map_info = map_info;
 	init_game(&game);
 	mlx_hook(game.mlx_win, 2, 1L << 0, key_press, &game);
@@ -64,5 +99,6 @@ int	main(void)
 	mlx_hook(game.mlx_win, 17, 1L << 17, handle_close, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
+	free_parsing(&map_info);
 	return (0);
 }
