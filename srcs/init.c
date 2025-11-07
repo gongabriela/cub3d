@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 17:37:31 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:05:20 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_player(t_game *game)
 		game->player.angle = PI / 2;
 	else if (game->map_info.player_ori == 'W')
 		game->player.angle = PI;
-	else if (game->map_info.player_ori == 'N')
+	else if (game->map_info.player_ori == 'E')
 		game->player.angle = 0.0;
 	game->player.key_up = false;
 	game->player.key_down = false;
