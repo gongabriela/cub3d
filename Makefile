@@ -6,7 +6,7 @@
 #    By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/11/07 11:36:47 by ggoncalv         ###   ########.fr        #
+#    Updated: 2025/11/07 13:55:06 by ggoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ MLX_DIR = ./minilibx
 MLX = ./minilibx/minilibx.a
 
 SRCS_DIR = ./srcs/
-SRCS =	$(addprefix $(SRCS_DIR), main.c parser.c)
+SRCS =	$(addprefix $(SRCS_DIR), main.c parser.c parser_textures.c)
 
 OBJS = $(SRCS:.c=.o)
 
