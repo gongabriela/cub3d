@@ -1,7 +1,7 @@
-NO ./textures/no_texture.xpm
+NO ./textures/n.xpm
 
-SO ./textures/so_texture.xpm
+SO ./textures/s.xpm
 
-WE ./textures/we_texture.xpm
+WE ./textures/e.xpm
 
-EA ./textures/ea_texture.xpm
+EA ./textures/w.xpm
