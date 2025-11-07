@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 17:33:35 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:54:53 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
 # define ESC 65307
-# define SPEED 2.5
-# define ANGLE_SPEED 0.05
+# define SPEED 2
+# define ANGLE_SPEED 0.03
 # define BLOCK 50
 # define FOV 50
 # define NUM_RAYS 1280
@@ -150,10 +150,10 @@ t_texture	*get_correct_texture(t_game *g);
 int			get_tex_x(t_game *g, t_texture *tex);
 void		draw_tex_column(t_game *g, int x, t_slice slice, t_texture *tex);
 void		draw_wall_slice_texture(t_game *g, int x, float dist);
-float		correct_fisheye(float distance,
-				float ray_angle, float player_angle);
 
 // draw_utils.c
+float		correct_fisheye(float distance,
+				float ray_angle, float player_angle);
 int			create_rgb(int r, int g, int b);
 void		rgb_to_int(t_game *game);
 void		pixel_put(t_game *game, int x, int y, int color);
@@ -163,7 +163,6 @@ void		clear_image(t_game *game, int color);
 void		init_img(t_game *game);
 void		init_player(t_game *game);
 void		init_raycasting(t_game *game);
-void		load_wall_texture(t_game *game);
 void		init_texture(t_game *game, t_texture *t, char *path);
 void		init_game(t_game *game);
 
@@ -188,24 +187,24 @@ void		update_raycasting_values(t_game *game, int i);
 void		init_step_and_sidedist(t_game *game);
 void		perform_dda(t_game *g);
 void		ray_casting(t_game *game);
-
+int			handle_close(void *param);
 
 // main.c
-int		handle_close(void *param);
-int		game_loop(t_game *game);
-void	init_struct(t_map *map_info);
-void	free_parsing(t_map *map_info);
-void	free_exit(char *msg, t_map *map_info, int code);
+int			game_loop(t_game *game);
+void		init_struct(t_map *map_info);
+void		free_parsing(t_map *map_info);
+void		free_exit(char *msg, t_map *map_info, int code);
+int			main(int argc, char **argv);
 
 // parser.c
-int		parser(int argc, char **argv, t_map *map_info);
-int		open_map(char *filename, t_map *map_info);
-int		parse_file(t_map *map_info);
+int			parser(int argc, char **argv, t_map *map_info);
+int			open_map(char *filename, t_map *map_info);
+int			parse_file(t_map *map_info);
 
 //parse_textures
-int		parse_textures(char *line, void *map_info, char **texture_path);
-int		open_file(char **texture_path);
-int     get_len(char *line);
-char    *get_texture_path(t_map *map_info, char *line, int len);
+int			parse_textures(char *line, void *map_info, char **texture_path);
+int			open_file(char **texture_path);
+int			get_len(char *line);
+char		*get_texture_path(t_map *map_info, char *line, int len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:06:37 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 16:19:09 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:48:45 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,25 @@ void	ray_casting(t_game *game)
 		draw_wall_slice_texture(game, i, dist);
 		i++;
 	}
+}
+
+int	handle_close(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	if (game->mlx_win)
+	{
+		mlx_destroy_image(game->mlx, game->img.img);
+		mlx_destroy_image(game->mlx, game->n.img);
+		mlx_destroy_image(game->mlx, game->s.img);
+		mlx_destroy_image(game->mlx, game->e.img);
+		mlx_destroy_image(game->mlx, game->w.img);
+		mlx_destroy_window(game->mlx, game->mlx_win);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
+	free_parsing(&game->map_info);
+	exit(0);
+	return (0);
 }

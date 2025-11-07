@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:20:36 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 16:37:53 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:43:42 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,4 @@ void	draw_wall_slice_texture(t_game *g, int x, float dist)
 		slice.end = SCREEN_HEIGHT - 1;
 	correct_texture = get_correct_texture(g);
 	draw_tex_column(g, x, slice, correct_texture);
-}
-
-float	correct_fisheye(float distance, float ray_angle, float player_angle)
-{
-	return (distance * cos(ray_angle - player_angle));
 }

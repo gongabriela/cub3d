@@ -6,11 +6,16 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:26:06 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 16:36:48 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:43:58 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+float	correct_fisheye(float distance, float ray_angle, float player_angle)
+{
+	return (distance * cos(ray_angle - player_angle));
+}
 
 int	create_rgb(int r, int g, int b)
 {

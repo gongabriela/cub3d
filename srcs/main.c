@@ -6,33 +6,11 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 18:37:10 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:48:22 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	handle_close(void *param)
-{
-	t_game	*game;
-
-	game = (t_game *)param;
-	if (game->mlx_win)
-	{
-		mlx_destroy_image(game->mlx, game->img.img);
-		mlx_destroy_image(game->mlx, game->n.img);
-		mlx_destroy_image(game->mlx, game->s.img);
-		mlx_destroy_image(game->mlx, game->e.img);
-		mlx_destroy_image(game->mlx, game->w.img);
-		mlx_destroy_window(game->mlx, game->mlx_win);
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
-	free_parsing(&game->map_info);
-	exit(0);
-	return (0);
-}
-
 
 int	game_loop(t_game *game)
 {
@@ -60,6 +38,7 @@ void	init_struct(t_map *map_info)
 	map_info->w_path = NULL;
 	map_info->e_path = NULL;
 }
+
 void	free_parsing(t_map *map_info)
 {
 	if (map_info->filename_fd != -1)
@@ -77,7 +56,7 @@ void	free_parsing(t_map *map_info)
 void	free_exit(char *msg, t_map *map_info, int code)
 {
 	if (msg)
-    	printf("%s", msg);
+		printf("%s", msg);
 	free_parsing(map_info);
 	exit(code);
 }
