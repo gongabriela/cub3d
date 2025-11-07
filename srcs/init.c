@@ -6,24 +6,24 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/06 18:39:46 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:47:05 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int map[MAP_HEIGHT][MAP_WIDTH] = {
-    {1,1,1,1,1,1,1,1,1,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,1,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,1,1,1,1,1,1,1,1,1}
-};
+// int map[MAP_HEIGHT][MAP_WIDTH] = {
+//     {1,1,1,1,1,1,1,1,1,1},
+//     {1,0,0,0,0,0,0,0,0,1},
+//     {1,0,0,0,0,0,0,0,0,1},
+//     {1,0,0,0,0,0,0,0,0,1},
+//     {1,0,0,0,0,0,0,0,0,1},
+//     {1,0,0,0,1,0,0,0,0,1},
+//     {1,0,0,0,0,0,0,0,0,1},
+//     {1,0,0,0,0,0,0,0,0,1},
+//     {1,0,0,0,0,0,0,0,0,1},
+//     {1,1,1,1,1,1,1,1,1,1}
+// };
 
 void	init_img(t_game *game)
 {
@@ -66,24 +66,11 @@ void	init_raycasting(t_game *game)
 	game->r.distance = 0;
 }
 
-void	load_wall_texture(t_game *game)
+void init_texture(t_game *game, t_texture *t, char *path)
 {
-	int		width;
-	int		height;
-	char	*path;
-
-	width = 0;
-	height = 0;
-	path = "textures/wall.xpm";
-	game->wall_texture.img = mlx_xpm_file_to_image(game->mlx,
-			path, &width, &height);
-	game->wall_texture.data = (int *)mlx_get_data_addr(game->wall_texture.img,
-			&game->wall_texture.bits_per_pixel,
-			&game->wall_texture.line_length, &game->wall_texture.endian);
-	game->wall_texture.height = height;
-	game->wall_texture.width = width;
+	t->img = mlx_xpm_file_to_image(game->mlx, path,  &t->width, &t->height);
+	t->data = (int *)mlx_get_data_addr(t->img, &t->bits_per_pixel, &t->line_length, &t->endian);
 }
-
 
 void	init_game(t_game *game)
 {
@@ -91,10 +78,7 @@ void	init_game(t_game *game)
 	game->mlx_win = mlx_new_window(game->mlx, 1280, 720, "cub3d");
 	init_img(game);
 	init_player(game);
-	load_wall_texture(game);
 	init_raycasting(game);
-	game->map = map;
-	init_map(&game->map_info);  // delete
 	init_texture(game, &game->n, game->map_info.n_path);
 	init_texture(game, &game->s, game->map_info.s_path);
 	init_texture(game, &game->e ,game->map_info.e_path);

@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/30 16:44:37 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:47:06 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(void)
 {
 	t_game	game;
 
+	game.map_info = map_info;
 	init_game(&game);
 	mlx_hook(game.mlx_win, 2, 1L << 0, key_press, &game);
 	mlx_hook(game.mlx_win, 3, 1L << 1, key_release, &game);
