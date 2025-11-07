@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 18:24:31 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:37:10 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	handle_close(void *param)
 		mlx_destroy_image(game->mlx, game->e.img);
 		mlx_destroy_image(game->mlx, game->w.img);
 		mlx_destroy_window(game->mlx, game->mlx_win);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 	}
+	free_parsing(&game->map_info);
 	exit(0);
 	return (0);
 }
