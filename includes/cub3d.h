@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 16:35:48 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:41:43 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ float		correct_fisheye(float distance,
 				float ray_angle, float player_angle);
 
 // draw_utils.c
+int			create_rgb(int r, int g, int b);
+void		rgb_to_int(t_game *game);
 void		pixel_put(t_game *game, int x, int y, int color);
 void		clear_image(t_game *game, int color);
 
