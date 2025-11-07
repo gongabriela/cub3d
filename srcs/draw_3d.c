@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:20:36 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/06 18:44:07 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:23:55 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	draw_tex_column(t_game *g, int x, t_slice slice, t_texture *tex)
 	while (y <= slice.end)
 	{
 		ty = (int)pos;
-		if (ty >= g->wall_texture.height)
-			ty = g->wall_texture.height - 1;
+		if (ty >= tex->height)
+			ty = tex->height - 1;
 		pixel_put(g, x, y,
 			tex->data[ty * tex->width + tx]);
 		pos += step;
