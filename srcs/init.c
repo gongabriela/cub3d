@@ -6,24 +6,11 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 16:42:03 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:37:31 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-// int map[MAP_HEIGHT][MAP_WIDTH] = {
-//     {0,0,0,1,1,1,1,1,1,1},
-//     {0,0,1,0,0,0,0,0,0,1},
-//     {0,1,0,0,0,0,0,0,0,1},
-//     {1,1,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,1,0,0,1,1,1},
-//     {1,0,0,0,0,0,0,1,0,0},
-//     {1,0,0,0,1,1,1,1,0,0},
-//     {1,0,0,0,1,0,1,1,0,0},
-//     {1,1,1,1,1,0,1,1,0,0}
-// };
 
 void	init_img(t_game *game)
 {
@@ -74,6 +61,12 @@ void	init_raycasting(t_game *game)
 	game->r.distance = 0;
 }
 
+void init_texture(t_game *game, t_texture *t, char *path)
+{
+	t->img = mlx_xpm_file_to_image(game->mlx, path,  &t->width, &t->height);
+	t->data = (int *)mlx_get_data_addr(t->img, &t->bits_per_pixel, &t->line_length, &t->endian);
+}
+
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -81,7 +74,6 @@ void	init_game(t_game *game)
 	init_img(game);
 	init_player(game);
 	rgb_to_int(game);
-	load_wall_texture(game);
 	init_raycasting(game);
 	init_texture(game, &game->n, game->map_info.n_path);
 	init_texture(game, &game->s, game->map_info.s_path);

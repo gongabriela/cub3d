@@ -6,19 +6,23 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 17:10:04 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:33:35 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../includes/libft/libft.h"
 # include "../minilibx/mlx.h"
 # include <stdlib.h>
 # include <stdbool.h>
 # include <math.h>
 # include <sys/time.h>
 # include <stdio.h>
+# include <fcntl.h>
+# include <string.h>
+# include <unistd.h>
 
 # define PI 3.14159265358979323846
 # define MAP_WIDTH 10
@@ -63,7 +67,7 @@ typedef struct s_map
 {
 	char		*filename;
 	int			filename_fd;
-	int			**map;
+	int			(*map)[MAP_WIDTH];
 	char		*n_path;
 	char		*s_path;
 	char		*e_path;
@@ -160,6 +164,7 @@ void		init_img(t_game *game);
 void		init_player(t_game *game);
 void		init_raycasting(t_game *game);
 void		load_wall_texture(t_game *game);
+void		init_texture(t_game *game, t_texture *t, char *path);
 void		init_game(t_game *game);
 
 // hooks.c
@@ -186,6 +191,8 @@ void		ray_casting(t_game *game);
 
 
 // main.c
+int		handle_close(void *param);
+int		game_loop(t_game *game);
 void	init_struct(t_map *map_info);
 void	free_parsing(t_map *map_info);
 void	free_exit(char *msg, t_map *map_info, int code);

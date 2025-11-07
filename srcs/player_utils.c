@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:03:26 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/10/29 14:11:36 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:24:00 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	touch(float px, float py, t_game *game)
 	grid_y = (int)py / BLOCK;
 	if (grid_x < 0 || grid_x >= MAP_WIDTH || grid_y < 0 || grid_y >= MAP_HEIGHT)
 		return (true);
-	if (game->map[grid_y][grid_x] == 1)
+	if (game->map_info.map[grid_y][grid_x] == 1)
 		return (true);
 	return (false);
 }
