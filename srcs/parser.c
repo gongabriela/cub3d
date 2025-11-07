@@ -28,7 +28,7 @@ int map[MAP_HEIGHT][MAP_WIDTH] = {
 int	parser(int argc, char **argv, t_map *map_info)
 {
 	map_info->map = map;
-	map_info->player_ori = 'N';
+	map_info->player_ori = 'W';
 	map_info->player_pos[0] = 4;
 	map_info->player_pos[1] = 4;
 	map_info->c_rgb[0] = 135;
