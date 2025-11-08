@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 18:54:53 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/08 12:15:15 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_map
 {
 	char		*filename;
 	int			filename_fd;
+	char		*line;
 	int			(*map)[MAP_WIDTH];
 	char		*n_path;
 	char		*s_path;
@@ -194,6 +195,7 @@ int			game_loop(t_game *game);
 void		init_struct(t_map *map_info);
 void		free_parsing(t_map *map_info);
 void		free_exit(char *msg, t_map *map_info, int code);
+void		free_gnl(t_map *map_info);
 int			main(int argc, char **argv);
 
 // parser.c
@@ -203,7 +205,7 @@ int			parse_file(t_map *map_info);
 
 //parse_textures
 int			parse_textures(char *line, void *map_info, char **texture_path);
-int			open_file(char **texture_path);
+int			open_file(char **texture_path, t_map *map_info);
 int			get_len(char *line);
 char		*get_texture_path(t_map *map_info, char *line, int len);
 

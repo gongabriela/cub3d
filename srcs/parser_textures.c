@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 12:04:08 by ggoncalv          #+#    #+#             */
-/*   Updated: 2025/11/07 16:12:11 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/08 14:26:18 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,18 @@ int	parse_textures(char *line, void *map_info, char **texture_path)
     (void)map_info;
     
 	if (!line)
-		return (printf("Error\nInvalid texture path.\n"));
+		return (free_exit("Invalid texture path.", map_info, 1), 1);
 	if (*texture_path != NULL)
-		return (printf("Error\nDuplicated texture element.\n"));
+		return (free_exit("Duplicated texture element.", map_info, 1), 1);
 	line += 3;
 	while (*line == ' ' ||*line == '\t')
 		line++;
 	if (!line || ft_strncmp(line, "./", 2) != 0)
-		return (printf("Error\nInvalid texture path.\n"));
-
+		return (free_exit("Invalid texture path.", map_info, 1), 1);
     *texture_path = get_texture_path(map_info, line, get_len(line));
 	if (!*texture_path)
 		return (1);
-	if (open_file(texture_path))
+	if (open_file(texture_path, map_info))
 		return (1);
 	/*if (check_for_more_elements(*texture_path, line))
 		return (1);*/
@@ -52,18 +51,13 @@ int	parse_textures(char *line, void *map_info, char **texture_path)
     return 0;
 }*/
 
-int	open_file(char **texture_path)
+int	open_file(char **texture_path, t_map *map_info)
 {
 	int	fd;
 	
 	fd = open(*texture_path, O_RDONLY);
 	if (fd < 0)
-	{
-		free(*texture_path);
-		*texture_path = NULL;
-		printf("Error\nTexture file does not exist or cannot be opened.\n");
-		return 1;
-	}
+		return (free_exit("Texture file does not exist or cannot be opened.", map_info, 1), 1);
 	close(fd);
 	return (0);
 }
@@ -85,21 +79,21 @@ char    *get_texture_path(t_map *map_info, char *line, int len)
 	(void)map_info;
 	
 	if (len == 0)
-        return (printf("Error\nInvalid texture path.\n"), NULL);
+		return (free_exit("Invalid texture path.", map_info, 1), NULL);
 	char *tmp = (char *)malloc(len + 1);
 	if (!tmp)
-		return (printf("Error\nMemory allocation failed.\n"), NULL);
+		return(free_exit("Memory allocation failed.", map_info, 1), NULL);
 	ft_memcpy(tmp, line, len);
 	tmp[len] = '\0';
 	texture_path = ft_strdup(tmp);
 	free(tmp);
 	if (!texture_path)
-		return (printf("Error\nMemory allocation failed.\n"), NULL);
+		return(free_exit("Memory allocation failed.", map_info, 1), NULL);
 	if (len < 4 || ft_strncmp((texture_path + (len - 4)), ".xpm", 4) != 0)
 	{
 		free(texture_path);
 		texture_path = NULL;
-		return (printf("Error\nInvalid texture file extension. Expected .xpm\n"), NULL);
+		return(free_exit("Invalid texture file extension. Expected .xpm", map_info, 1), NULL);
 	}
 	return (texture_path);
 }

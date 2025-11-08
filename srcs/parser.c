@@ -38,10 +38,10 @@ int	parser(int argc, char **argv, t_map *map_info)
 	map_info->f_rgb[1] = 139;
 	map_info->f_rgb[2] = 34;
 	if (argc != 2)
-		return (printf("Error\nInvalid number of arguments.\n"), 1);
-	if (!open_map(argv[1], map_info))
+		return(free_exit("Invalid number of arguments.", map_info, 1), 1);
+	if (open_map(argv[1], map_info))
 		return (1);
-	if (parse_file(map_info))
+	if (parse_file(map_info)) //talvez nao precise disto!
 		return (1);
 	close(map_info->filename_fd);
 	map_info->filename_fd = -1;
@@ -53,33 +53,32 @@ int	open_map(char *filename, t_map *map_info)
 
 	len = strlen(filename);
 	if (len < 4 || ft_strcmp(&filename[len - 4], ".cub") != 0)
-		return (printf("Error\nInvalid file extension\n"), 0);
+		return(free_exit("Invalid file extension", map_info, 1), 1);
 	map_info->filename = filename;
 	map_info->filename_fd = open(filename, O_RDONLY);
 	if (map_info->filename_fd > 0)
-		return (1);
-	return (printf("Error\nCould not open file: %s\n", filename), 0);
+		return (0);
+	return(free_exit("Could not open file.", map_info, 1), 1);
 }
 
 int	parse_file(t_map *map_info)
 {
-	char	*line;
-
-	line = get_next_line(map_info->filename_fd);
-	while (line)
+	map_info->line = get_next_line(map_info->filename_fd);
+	while (map_info->line)
 	{
 
-		if (ft_strncmp(line, "NO ", 3) == 0)
-			parse_textures(line, map_info, &map_info->n_path);
-		else if (ft_strncmp(line, "SO ", 3) == 0)
-			parse_textures(line, map_info, &map_info->s_path);
-		else if (ft_strncmp(line, "WE ", 3) == 0)
-			parse_textures(line, map_info, &map_info->w_path);
-		else if (ft_strncmp(line, "EA ", 3) == 0)
-			parse_textures(line, map_info, &map_info->e_path);
-		free(line);
-		line = get_next_line(map_info->filename_fd);
+		if (ft_strncmp(map_info->line, "NO ", 3) == 0)
+			parse_textures(map_info->line, map_info, &map_info->n_path);
+		else if (ft_strncmp(map_info->line, "SO ", 3) == 0)
+			parse_textures(map_info->line, map_info, &map_info->s_path);
+		else if (ft_strncmp(map_info->line, "WE ", 3) == 0)
+			parse_textures(map_info->line, map_info, &map_info->w_path);
+		else if (ft_strncmp(map_info->line, "EA ", 3) == 0)
+			parse_textures(map_info->line, map_info, &map_info->e_path);
+		free(map_info->line);
+		map_info->line = get_next_line(map_info->filename_fd);
 	}
+	map_info->line = NULL;
 	return (0);
 }
 

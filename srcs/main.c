@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 18:48:22 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/08 14:28:00 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init_struct(t_map *map_info)
 	map_info->s_path = NULL;
 	map_info->w_path = NULL;
 	map_info->e_path = NULL;
+	map_info->line = NULL;
 }
 
 void	free_parsing(t_map *map_info)
@@ -51,12 +52,27 @@ void	free_parsing(t_map *map_info)
 		free(map_info->w_path);
 	if (map_info->e_path != NULL)
 		free(map_info->e_path);
+	if (map_info->line != NULL)
+		free(map_info->line);
+}
+
+void	free_gnl(t_map *map_info)
+{
+	char	*line;
+
+	line = get_next_line(map_info->filename_fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(map_info->filename_fd);
+	}
 }
 
 void	free_exit(char *msg, t_map *map_info, int code)
 {
 	if (msg)
-		printf("%s", msg);
+		printf("Error\n%s\n", msg);
+	free_gnl(map_info);
 	free_parsing(map_info);
 	exit(code);
 }
@@ -67,7 +83,7 @@ int	main(int argc, char **argv)
 	t_map	map_info;
 
 	init_struct(&map_info);
-	if (parser(argc, argv, &map_info))
+	if (parser(argc, argv, &map_info)) //talvez nao precise disto!
 		free_exit(NULL, &map_info, 1);
 	game.map_info = map_info;
 	init_game(&game);
