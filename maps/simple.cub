@@ -1,7 +1,11 @@
-NO ./textures/n.xpm maiscoisas
+NO ./textures/n.xpm
 
-NO ./textures/s.xpm
+SO ./textures/s.xpm
 
 WE ./textures/e.xpm
 
-EA ./teres/w.xpm
+EA ./textures/w.xpm
+
+F   34,139,34
+
+C   135,20,235

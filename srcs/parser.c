@@ -31,12 +31,7 @@ int	parser(int argc, char **argv, t_map *map_info)
 	map_info->player_ori = 'W';
 	map_info->player_pos[0] = 4;
 	map_info->player_pos[1] = 4;
-	map_info->c_rgb[0] = 135;
-	map_info->c_rgb[1] = 206;
-	map_info->c_rgb[2] = 235;
-	map_info->f_rgb[0] = 34;
-	map_info->f_rgb[1] = 139;
-	map_info->f_rgb[2] = 34;
+
 	if (argc != 2)
 		return (free_exit("Invalid number of arguments.", map_info, 1), 1);
 	if (open_map(argv[1], map_info))
@@ -75,6 +70,10 @@ int	parse_file(t_map *map_info)
 			parse_textures(map_info->line, map_info, &map_info->w_path);
 		else if (ft_strncmp(map_info->line, "EA ", 3) == 0)
 			parse_textures(map_info->line, map_info, &map_info->e_path);
+		else if (ft_strncmp(map_info->line, "F ", 2) == 0)
+			parse_colors(map_info->line, map_info, map_info->f_rgb);
+		else if (ft_strncmp(map_info->line, "C ", 2) == 0)
+			parse_colors(map_info->line, map_info, map_info->c_rgb);
 		free(map_info->line);
 		map_info->line = get_next_line(map_info->filename_fd);
 	}

@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/09 12:19:53 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/09 15:11:55 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,5 +209,9 @@ int			open_file(char **texture_path, t_map *map_info);
 int			get_len(char *line);
 char		*get_texture_path(t_map *map_info, char *line, int len);
 int			check_for_more_elements(t_map *map_info, char *line);
+
+//parser_colors.c
+int    parse_colors(char *line, t_map *map_info, int rgb[3]);
+int get_rgb_value(char **line, t_map *map_info);
 
 #endif

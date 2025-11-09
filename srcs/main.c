@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/08 14:28:00 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/09 15:22:52 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ int	game_loop(t_game *game)
 
 void	init_struct(t_map *map_info)
 {
+	int	i;
+
+	i = 0;
 	map_info->filename = NULL;
 	map_info->filename_fd = -1;
 	map_info->n_path = NULL;
@@ -38,6 +41,13 @@ void	init_struct(t_map *map_info)
 	map_info->w_path = NULL;
 	map_info->e_path = NULL;
 	map_info->line = NULL;
+	while (i < 3)
+	{
+		map_info->f_rgb[i] = -1;
+		map_info->c_rgb[i] = -1;
+		i++;
+	}
+
 }
 
 void	free_parsing(t_map *map_info)
