@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/08 12:15:15 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/09 12:19:53 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,9 +204,10 @@ int			open_map(char *filename, t_map *map_info);
 int			parse_file(t_map *map_info);
 
 //parse_textures
-int			parse_textures(char *line, void *map_info, char **texture_path);
+int			parse_textures(char *line, t_map *map_info, char **texture_path);
 int			open_file(char **texture_path, t_map *map_info);
 int			get_len(char *line);
 char		*get_texture_path(t_map *map_info, char *line, int len);
+int			check_for_more_elements(t_map *map_info, char *line);
 
 #endif
