@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/09 15:11:55 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/09 22:26:35 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ typedef struct s_map
 	char		*filename;
 	int			filename_fd;
 	char		*line;
-	int			(*map)[MAP_WIDTH];
+	char		*tmp;
+	int			**map;
 	char		*n_path;
 	char		*s_path;
 	char		*e_path;
@@ -202,6 +203,8 @@ int			main(int argc, char **argv);
 int			parser(int argc, char **argv, t_map *map_info);
 int			open_map(char *filename, t_map *map_info);
 int			parse_file(t_map *map_info);
+int			is_map_line(char *line);
+void	check_missing_elements(t_map *map_info);
 
 //parse_textures
 int			parse_textures(char *line, t_map *map_info, char **texture_path);
@@ -213,5 +216,10 @@ int			check_for_more_elements(t_map *map_info, char *line);
 //parser_colors.c
 int    parse_colors(char *line, t_map *map_info, int rgb[3]);
 int get_rgb_value(char **line, t_map *map_info);
+
+// parser_map.c
+void		parse_map(t_map *map_info);
+void		read_map(t_map *map_info, int *width, int *height);
+void		check_map_line_validity(char *line, t_map *map_info);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/11/09 15:13:58 by ggoncalv         ###   ########.fr        #
+#    Updated: 2025/11/09 22:03:26 by ggoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRCS =	$(addprefix $(SRCS_DIR), 	main.c \
 									debug_draw.c \
 									parser.c \
 									parser_textures.c \
-									parser_colors.c )
+									parser_colors.c \
+									parser_map.c )
 
 OBJS = $(SRCS:.c=.o)
 
