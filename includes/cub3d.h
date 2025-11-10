@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/09 22:26:35 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:22:40 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,7 @@ int get_rgb_value(char **line, t_map *map_info);
 // parser_map.c
 void		parse_map(t_map *map_info);
 void		read_map(t_map *map_info, int *width, int *height);
+void		calculate_max_width(int	*width, char *curr_line);
 void		check_map_line_validity(char *line, t_map *map_info);
-
+void    	check_first_last_line(char *line, t_map *map_info);
 #endif
