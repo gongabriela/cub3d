@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/09 22:26:19 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:55:02 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	init_struct(t_map *map_info)
 		i++;
 	}
 	map_info->tmp = NULL;
-	map_info->map = NULL;
 }
 
 void	free_parsing(t_map *map_info)

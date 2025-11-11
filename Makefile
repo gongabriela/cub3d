@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+         #
+#    By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/11/09 22:03:26 by ggoncalv         ###   ########.fr        #
+#    Updated: 2025/11/10 18:28:54 by ggoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS =	$(addprefix $(SRCS_DIR), 	main.c \
 									parser.c \
 									parser_textures.c \
 									parser_colors.c \
+									pre_parser_map.c \
 									parser_map.c )
 
 OBJS = $(SRCS:.c=.o)

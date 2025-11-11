@@ -57,7 +57,10 @@ int	parse_file(t_map *map_info)
 		else if (ft_strncmp(map_info->line, "C ", 2) == 0)
 			parse_colors(map_info->line, map_info, map_info->c_rgb);
 		else if (is_map_line(map_info->line))
+		{
 			parse_map(map_info);
+			break ;
+		}
 		free(map_info->line);
 		map_info->line = get_next_line(map_info->filename_fd);
 	}
@@ -84,6 +87,4 @@ void	check_missing_elements(t_map *map_info)
 		map_info->f_rgb[2] == -1 || map_info->c_rgb[0] == -1 ||
 		map_info->c_rgb[1] == -1 || map_info->c_rgb[2] == -1)
 		free_exit("Missing color value(s).", map_info, 1);
-	if (map_info->map == NULL)
-		free_exit("Map not found.", map_info, 1);
 }
