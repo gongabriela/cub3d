@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:26:06 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 18:43:58 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:52:53 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	pixel_put(t_game *game, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x >= 1280 || y < 0 || y >= 720)
+	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
 		return ;
 	dst = game->img.addr + (y * game->img.line_length
 			+ x * (game->img.bits_per_pixel / 8));

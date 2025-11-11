@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 18:45:45 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:04:31 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_img(t_game *game)
 {
-	game->img.img = mlx_new_image(game->mlx, 1280, 720);
+	game->img.img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	game->img.addr = mlx_get_data_addr(game->img.img,
 			&game->img.bits_per_pixel, &game->img.line_length,
 			&game->img.endian);
@@ -22,8 +22,8 @@ void	init_img(t_game *game)
 
 void	init_player(t_game *game)
 {
-	game->player.x = game->map_info.player_pos[0] * BLOCK;
-	game->player.y = game->map_info.player_pos[1] * BLOCK;
+	game->player.x = (game->map_info.player_pos[0] + 0.5) * BLOCK;
+	game->player.y = (game->map_info.player_pos[1] + 0.5) * BLOCK;
 	if (game->map_info.player_ori == 'N')
 		game->player.angle = 3 * PI / 2;
 	else if (game->map_info.player_ori == 'S')
@@ -70,7 +70,7 @@ void	init_texture(t_game *game, t_texture *t, char *path)
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->mlx_win = mlx_new_window(game->mlx, 1280, 720, "cub3d");
+	game->mlx_win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
 	init_img(game);
 	init_player(game);
 	rgb_to_int(game);

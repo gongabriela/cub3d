@@ -13,24 +13,19 @@
 #include "../includes/cub3d.h"
 
 int map[MAP_HEIGHT][MAP_WIDTH] = {
-    {0,0,0,1,1,1,1,1,1,1},
-    {0,0,1,0,0,0,0,0,0,1},
-    {0,1,0,0,0,0,0,0,0,1},
-    {1,1,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,1,0,0,1,1,1},
-    {1,0,0,0,0,0,0,1,0,0},
-    {1,0,0,0,1,1,1,1,0,0},
-    {1,0,0,0,1,0,1,1,0,0},
-    {1,1,1,1,1,0,1,1,0,0}
+		{1,1,1,1,1,1,1,1,1},
+		{1,0,0,0,0,0,0,0,1},
+		{1,W,1,1,1,0,1,0,1},
+		{1,0,0,0,0,0,0,0,1},
+		{1,1,1,1,1,1,1,1,1}
 };
 
 int	parser(int argc, char **argv, t_map *map_info)
 {
 	map_info->map = map;
 	map_info->player_ori = 'W';
-	map_info->player_pos[0] = 4;
-	map_info->player_pos[1] = 4;
+	map_info->player_pos[0] = 1;
+	map_info->player_pos[1] = 2;
 	map_info->c_rgb[0] = 135;
 	map_info->c_rgb[1] = 206;
 	map_info->c_rgb[2] = 235;

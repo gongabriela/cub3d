@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 18:54:53 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:59:05 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define SPEED 2
 # define ANGLE_SPEED 0.03
 # define BLOCK 50
-# define FOV 50
+# define FOV 60
 # define NUM_RAYS 1280
 # define RAY_STEP 1
 # define DEBUG 0
@@ -74,7 +74,7 @@ typedef struct s_map
 	char		*w_path;
 	int			c_rgb[3];
 	int			f_rgb[3];
-	int			player_pos[2];
+	float			player_pos[2];
 	char		player_ori;
 }	t_map;
 
