@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 18:48:22 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:57:25 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,26 @@ int	game_loop(t_game *game)
 
 void	init_struct(t_map *map_info)
 {
+	int	i;
+
+	i = 0;
 	map_info->filename = NULL;
 	map_info->filename_fd = -1;
 	map_info->n_path = NULL;
 	map_info->s_path = NULL;
 	map_info->w_path = NULL;
 	map_info->e_path = NULL;
+	map_info->line = NULL;
+	while (i < 3)
+	{
+		map_info->f_rgb[i] = -1;
+		map_info->c_rgb[i] = -1;
+		i++;
+	}
+	map_info->tmp = NULL;
+	map_info->char_matrix = NULL;
+	map_info->ff_matrix = NULL;
+	map_info->map = NULL;
 }
 
 void	free_parsing(t_map *map_info)
@@ -51,12 +65,50 @@ void	free_parsing(t_map *map_info)
 		free(map_info->w_path);
 	if (map_info->e_path != NULL)
 		free(map_info->e_path);
+	if (map_info->line != NULL)
+		free(map_info->line);
+	if (map_info->tmp != NULL)
+		free(map_info->tmp);
+	if (map_info->char_matrix != NULL)
+		free_matrix((void **)map_info->char_matrix);
+	if (map_info->ff_matrix != NULL)
+		free_matrix((void **)map_info->ff_matrix);
+	if (map_info->map != NULL)
+		free_matrix((void **)map_info->map);
+}
+
+void	free_gnl(t_map *map_info)
+{
+	char	*line;
+
+	line = get_next_line(map_info->filename_fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(map_info->filename_fd);
+	}
+}
+
+void	free_matrix(void **matrix)
+{
+	int	i;
+
+	if (!matrix)
+		return ;
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }
 
 void	free_exit(char *msg, t_map *map_info, int code)
 {
 	if (msg)
-		printf("%s", msg);
+		printf("Error\n%s\n", msg);
+	free_gnl(map_info);
 	free_parsing(map_info);
 	exit(code);
 }
@@ -67,7 +119,7 @@ int	main(int argc, char **argv)
 	t_map	map_info;
 
 	init_struct(&map_info);
-	if (parser(argc, argv, &map_info))
+	if (parser(argc, argv, &map_info)) //talvez nao precise disto!
 		free_exit(NULL, &map_info, 1);
 	game.map_info = map_info;
 	init_game(&game);

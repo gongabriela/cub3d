@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+         #
+#    By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/11/07 18:25:45 by jpedro-f         ###   ########.fr        #
+#    Updated: 2025/11/11 11:50:32 by ggoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,11 @@ SRCS =	$(addprefix $(SRCS_DIR), 	main.c \
 									debug_2d.c \
 									debug_draw.c \
 									parser.c \
-									parser_textures.c)
+									parser_textures.c \
+									parser_colors.c \
+									pre_parser_map.c \
+									ff_matrix.c \
+									parser_map.c )
 
 OBJS = $(SRCS:.c=.o)
 

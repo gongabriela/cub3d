@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/11 15:59:05 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:32:57 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 # include <unistd.h>
 
 # define PI 3.14159265358979323846
-# define MAP_WIDTH 10
-# define MAP_HEIGHT 10
 # define W 119
 # define A 97
 # define S 115
@@ -67,7 +65,13 @@ typedef struct s_map
 {
 	char		*filename;
 	int			filename_fd;
-	int			(*map)[MAP_WIDTH];
+	char		*line;
+	char		*tmp;
+	int			width;
+	int			height;
+	char		**ff_matrix;
+	char		**char_matrix;
+	int			**map;
 	char		*n_path;
 	char		*s_path;
 	char		*e_path;
@@ -194,17 +198,36 @@ int			game_loop(t_game *game);
 void		init_struct(t_map *map_info);
 void		free_parsing(t_map *map_info);
 void		free_exit(char *msg, t_map *map_info, int code);
+void		free_gnl(t_map *map_info);
+void		free_matrix(void **matrix);
 int			main(int argc, char **argv);
 
 // parser.c
 int			parser(int argc, char **argv, t_map *map_info);
 int			open_map(char *filename, t_map *map_info);
 int			parse_file(t_map *map_info);
+int			is_map_line(char *line);
+void	check_missing_elements(t_map *map_info);
 
 //parse_textures
-int			parse_textures(char *line, void *map_info, char **texture_path);
-int			open_file(char **texture_path);
+int			parse_textures(char *line, t_map *map_info, char **texture_path);
+int			open_file(char **texture_path, t_map *map_info);
 int			get_len(char *line);
 char		*get_texture_path(t_map *map_info, char *line, int len);
+int			check_for_more_elements(t_map *map_info, char *line);
+
+//parser_colors.c
+int    parse_colors(char *line, t_map *map_info, int rgb[3]);
+int get_rgb_value(char **line, t_map *map_info);
+
+// parser_map.c
+void		parse_map(t_map *map_info);
+void    	read_map(t_map *map_info);
+void		calculate_max_width(int	*width, char *curr_line);
+void		check_map_line_validity(char *line, t_map *map_info);
+void    	flood_fill(char **matrix, t_map *map_info, int x, int y);
+void    	create_ff_matrix(t_map *map_info);
+void    	fill_ff_matrix_row(t_map *map_info, int row, int size);
+void		create_int_matrix(t_map *map_info);
 
 #endif
