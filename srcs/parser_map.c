@@ -18,15 +18,6 @@ void    parse_map(t_map *map_info)
     create_ff_matrix(map_info);
     flood_fill(map_info->ff_matrix, map_info, map_info->player_pos[0], map_info->player_pos[1]);
     create_int_matrix(map_info);
-    //print_int_matrix
-    for (int i = 0; i < map_info->height; i++)
-    {
-        for (int j = 0; j < map_info->width; j++)
-        {
-            printf("%d ", map_info->map[i][j]);
-        }
-        printf("\n");
-    }
 }
 
 void    flood_fill(char **matrix, t_map *map_info, int x, int y)
