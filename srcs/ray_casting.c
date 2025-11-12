@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:06:37 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 18:48:45 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:06:46 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	perform_dda(t_game *g)
 			g->r.side = 1;
 		}
 		if (g->r.mapx < 0 || g->r.mapy < 0
-			|| g->r.mapx >= MAP_WIDTH || g->r.mapy >= MAP_HEIGHT)
+			|| g->r.mapx >= g->map_info.width || g->r.mapy >= g->map_info.height)
 			break ;
 		if (g->map_info.map[g->r.mapy][g->r.mapx] == 1)
 			break ;

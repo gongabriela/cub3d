@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/11 10:55:02 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:57:25 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ void	init_struct(t_map *map_info)
 		i++;
 	}
 	map_info->tmp = NULL;
+	map_info->char_matrix = NULL;
+	map_info->ff_matrix = NULL;
+	map_info->map = NULL;
 }
 
 void	free_parsing(t_map *map_info)
@@ -66,6 +69,12 @@ void	free_parsing(t_map *map_info)
 		free(map_info->line);
 	if (map_info->tmp != NULL)
 		free(map_info->tmp);
+	if (map_info->char_matrix != NULL)
+		free_matrix((void **)map_info->char_matrix);
+	if (map_info->ff_matrix != NULL)
+		free_matrix((void **)map_info->ff_matrix);
+	if (map_info->map != NULL)
+		free_matrix((void **)map_info->map);
 }
 
 void	free_gnl(t_map *map_info)
@@ -78,6 +87,21 @@ void	free_gnl(t_map *map_info)
 		free(line);
 		line = get_next_line(map_info->filename_fd);
 	}
+}
+
+void	free_matrix(void **matrix)
+{
+	int	i;
+
+	if (!matrix)
+		return ;
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }
 
 void	free_exit(char *msg, t_map *map_info, int code)

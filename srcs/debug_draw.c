@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 18:24:58 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/07 16:22:07 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:07:06 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void	draw_map(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < MAP_HEIGHT)
+	while (i < game->map_info.height)
 	{
 		j = 0;
-		while (j < MAP_WIDTH)
+		while (j < game->map_info.width)
 		{
 			x = j * BLOCK;
 			y = i * BLOCK;

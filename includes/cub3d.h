@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/11 10:56:05 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:07:35 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 # include <unistd.h>
 
 # define PI 3.14159265358979323846
-# define MAP_WIDTH 10
-# define MAP_HEIGHT 10
 # define W 119
 # define A 97
 # define S 115
@@ -71,6 +69,8 @@ typedef struct s_map
 	char		*tmp;
 	int			width;
 	int			height;
+	char		**ff_matrix;
+	char		**char_matrix;
 	int			**map;
 	char		*n_path;
 	char		*s_path;
@@ -199,6 +199,7 @@ void		init_struct(t_map *map_info);
 void		free_parsing(t_map *map_info);
 void		free_exit(char *msg, t_map *map_info, int code);
 void		free_gnl(t_map *map_info);
+void		free_matrix(void **matrix);
 int			main(int argc, char **argv);
 
 // parser.c
@@ -224,5 +225,9 @@ void		parse_map(t_map *map_info);
 void    	read_map(t_map *map_info);
 void		calculate_max_width(int	*width, char *curr_line);
 void		check_map_line_validity(char *line, t_map *map_info);
+void    	flood_fill(char **matrix, t_map *map_info, int x, int y);
+void    	create_ff_matrix(t_map *map_info);
+void    	fill_ff_matrix_row(t_map *map_info, int row, int size);
+void		create_int_matrix(t_map *map_info);
 
 #endif

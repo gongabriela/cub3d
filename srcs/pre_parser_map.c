@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:50:16 by ggoncalv          #+#    #+#             */
-/*   Updated: 2025/11/11 11:00:44 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:14:54 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void    read_map(t_map *map_info)
         map_info->line = map;
         map_info->tmp = get_next_line(map_info->filename_fd);
     }
+    map_info->char_matrix = ft_split(map_info->line, '\n');
+    if (!map_info->char_matrix)
+        free_exit("Memory allocation failed for char_matrix.", map_info, 1);
+    free(map_info->line);
+    map_info->line = NULL;
 }
 
 
