@@ -14,6 +14,12 @@
 
 void	parse_map(t_map *map_info)
 {
+	if (map_info->n_path == NULL || map_info->s_path == NULL
+		|| map_info->w_path == NULL || map_info->e_path == NULL
+		|| map_info->f_rgb[0] == -1 || map_info->f_rgb[1] == -1
+		|| map_info->f_rgb[2] == -1 || map_info->c_rgb[0] == -1
+		|| map_info->c_rgb[1] == -1 || map_info->c_rgb[2] == -1)
+		free_exit("Missing elements before map", map_info, 1);
 	read_map(map_info);
 	create_ff_matrix(map_info);
 	flood_fill(map_info->ff_matrix, map_info, map_info->player_pos[0],

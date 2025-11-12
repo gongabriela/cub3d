@@ -6,7 +6,7 @@
 #    By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/11/12 14:13:00 by ggoncalv         ###   ########.fr        #
+#    Updated: 2025/11/12 16:08:33 by ggoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS =	$(addprefix $(SRCS_DIR), 	main.c \
 									debug_2d.c \
 									debug_draw.c \
 									parser.c \
+									parser_utils.c \
 									parser_textures.c \
 									parser_colors.c \
 									pre_parser_map.c \

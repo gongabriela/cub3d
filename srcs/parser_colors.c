@@ -21,7 +21,7 @@ int	parse_colors(char *line, t_map *map_info, int rgb[3])
 	if (rgb[0] != -1 || rgb[1] != -1 || rgb[2] != -1)
 		return (free_exit("Duplicated RGB element.", map_info, 1), 1);
 	line += 2;
-	while (*line == ' ' || *line == '\t')
+	while (*line == ' ')
 		line++;
 	i = 0;
 	while (*line && i < 3)
@@ -32,7 +32,7 @@ int	parse_colors(char *line, t_map *map_info, int rgb[3])
 		i++;
 	}
 	if (i != 3 || (*line != '\0' && *line != '\n' && *line != '\r'
-			&& *line != ' ' && *line != '\t'))
+			&& *line != ' '))
 		return (free_exit("Invalid RGB value.", map_info, 1), 1);
 	while (*line == ' ' || *line == '\t')
 		line++;

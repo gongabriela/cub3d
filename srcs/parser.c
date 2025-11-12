@@ -41,26 +41,25 @@ int	open_map(char *filename, t_map *map_info)
 
 int	parse_file(t_map *map_info)
 {
+	char	*skipped;
+
 	map_info->line = get_next_line(map_info->filename_fd);
 	while (map_info->line)
 	{
-		if (ft_strncmp(map_info->line, "NO ", 3) == 0)
-			parse_textures(map_info->line, map_info, &map_info->n_path);
-		else if (ft_strncmp(map_info->line, "SO ", 3) == 0)
-			parse_textures(map_info->line, map_info, &map_info->s_path);
-		else if (ft_strncmp(map_info->line, "WE ", 3) == 0)
-			parse_textures(map_info->line, map_info, &map_info->w_path);
-		else if (ft_strncmp(map_info->line, "EA ", 3) == 0)
-			parse_textures(map_info->line, map_info, &map_info->e_path);
-		else if (ft_strncmp(map_info->line, "F ", 2) == 0)
-			parse_colors(map_info->line, map_info, map_info->f_rgb);
-		else if (ft_strncmp(map_info->line, "C ", 2) == 0)
-			parse_colors(map_info->line, map_info, map_info->c_rgb);
+		skipped = skip_spaces(map_info->line);
+		if (is_texture(skipped))
+			main_parse_textures(map_info, skipped);
+		else if (ft_strncmp(skipped, "F ", 2) == 0)
+			parse_colors(skipped, map_info, map_info->f_rgb);
+		else if (ft_strncmp(skipped, "C ", 2) == 0)
+			parse_colors(skipped, map_info, map_info->c_rgb);
 		else if (is_map_line(map_info->line))
 		{
 			parse_map(map_info);
 			break ;
 		}
+		else if (*skipped != '\n' && *skipped != '\r' && *skipped != '\0')
+			free_exit("Invalid line in configuration file.", map_info, 1);
 		free(map_info->line);
 		map_info->line = get_next_line(map_info->filename_fd);
 	}
@@ -70,7 +69,7 @@ int	parse_file(t_map *map_info)
 
 int	is_map_line(char *line)
 {
-	while (*line == ' ' || *line == '\t')
+	while (*line == ' ')
 		line++;
 	if (*line == '0' || *line == '1' || *line == 'N'
 		|| *line == 'S' || *line == 'E' || *line == 'W')

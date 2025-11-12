@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/12 14:31:02 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:24:52 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,11 @@ int			open_map(char *filename, t_map *map_info);
 int			parse_file(t_map *map_info);
 int			is_map_line(char *line);
 void		check_missing_elements(t_map *map_info);
+
+//parser_utils.c
+char		*skip_spaces(char *line);
+int			is_texture(char *line);
+void		main_parse_textures(t_map *map_info, char *line);
 
 //parse_textures
 int			parse_textures(char *line, t_map *map_info, char **texture_path);
