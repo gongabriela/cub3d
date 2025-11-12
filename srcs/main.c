@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/12 11:57:25 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:19:13 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	init_struct(t_map *map_info)
 	int	i;
 
 	i = 0;
+	map_info->width = 0;
+	map_info->height = 0;
 	map_info->filename = NULL;
 	map_info->filename_fd = -1;
 	map_info->n_path = NULL;

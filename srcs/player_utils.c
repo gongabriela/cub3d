@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:03:26 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/12 12:06:36 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:17:15 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 bool	touch(float px, float py, t_game *game)
 {
-	int	grid_x;
-	int	grid_y;
+	int	x;
+	int	y;
 
-	grid_x = (int)px / BLOCK;
-	grid_y = (int)py / BLOCK;
-	if (grid_x < 0 || grid_x >= game->map_info.width || grid_y < 0 || grid_y >= game->map_info.height)
+	x = (int)px / BLOCK;
+	y = (int)py / BLOCK;
+	if (y < 0 || y >= game->map_info.height || x < 0 || x >= game->map_info.width)
 		return (true);
-	if (game->map_info.map[grid_y][grid_x] == 1)
+	if (game->map_info.map[y][x] == 1)
 		return (true);
 	return (false);
 }
