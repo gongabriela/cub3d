@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggoncalv <ggoncalv@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 12:04:08 by ggoncalv          #+#    #+#             */
-/*   Updated: 2025/11/09 12:25:49 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:22:13 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_for_more_elements(t_map *map_info, char *line)
 	while (*line == ' ' || *line == '\t')
 		line++;
 	if (*line != '\0' && *line != '\n' && *line != '\r')
-		return (free_exit("Too many elements for texture info.", map_info, 1), 1);
+		return (free_exit("Too many elements @ texture info.", map_info, 1), 1);
 	return (0);
 }
 
@@ -51,7 +51,7 @@ int	open_file(char **texture_path, t_map *map_info)
 
 	fd = open(*texture_path, O_RDONLY);
 	if (fd < 0)
-		return (free_exit("Texture file does not exist or cannot be opened.", map_info, 1), 1);
+		free_exit("Texture doesn't exist or can't be opened.", map_info, 1);
 	close(fd);
 	return (0);
 }
@@ -61,7 +61,8 @@ int	get_len(char *line)
 	char	*path_end;
 
 	path_end = line;
-	while (*path_end && *path_end != ' ' && *path_end != '\n' && *path_end != '\r' && *path_end != '\t')
+	while (*path_end && *path_end != ' ' && *path_end != '\n'
+		&& *path_end != '\r' && *path_end != '\t')
 		path_end++;
 	return (path_end - line);
 }
@@ -86,7 +87,7 @@ char	*get_texture_path(t_map *map_info, char *line, int len)
 	{
 		free(texture_path);
 		texture_path = NULL;
-		return (free_exit("Invalid texture file extension. Expected .xpm", map_info, 1), NULL);
+		free_exit("Invalid texture file extension. Expected .xpm", map_info, 1);
 	}
 	return (texture_path);
 }

@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/12 13:58:10 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:31:02 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_map
 	char		*w_path;
 	int			c_rgb[3];
 	int			f_rgb[3];
-	float			player_pos[2];
+	float		player_pos[2];
 	char		player_ori;
 }	t_map;
 
@@ -208,7 +208,7 @@ int			parser(int argc, char **argv, t_map *map_info);
 int			open_map(char *filename, t_map *map_info);
 int			parse_file(t_map *map_info);
 int			is_map_line(char *line);
-void	check_missing_elements(t_map *map_info);
+void		check_missing_elements(t_map *map_info);
 
 //parse_textures
 int			parse_textures(char *line, t_map *map_info, char **texture_path);
@@ -218,17 +218,17 @@ char		*get_texture_path(t_map *map_info, char *line, int len);
 int			check_for_more_elements(t_map *map_info, char *line);
 
 //parser_colors.c
-int    parse_colors(char *line, t_map *map_info, int rgb[3]);
-int get_rgb_value(char **line, t_map *map_info);
+int			parse_colors(char *line, t_map *map_info, int rgb[3]);
+int			get_rgb_value(char **line, t_map *map_info);
 
 // parser_map.c
 void		parse_map(t_map *map_info);
-void    	read_map(t_map *map_info);
+void		read_map(t_map *map_info);
 void		calculate_max_width(int	*width, char *curr_line);
 void		check_map_line_validity(char *line, t_map *map_info);
-void    	flood_fill(char **matrix, t_map *map_info, int x, int y);
-void    	create_ff_matrix(t_map *map_info);
-void    	fill_ff_matrix_row(t_map *map_info, int row, int size);
+void		flood_fill(char **matrix, t_map *map_info, int x, int y);
+void		create_ff_matrix(t_map *map_info);
+void		fill_ff_matrix_row(t_map *map_info, int row, int size);
 void		create_int_matrix(t_map *map_info);
 
 #endif

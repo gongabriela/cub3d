@@ -72,19 +72,19 @@ int	is_map_line(char *line)
 {
 	while (*line == ' ' || *line == '\t')
 		line++;
-	if (*line == '0' || *line == '1' || *line == 'N' ||
-		*line == 'S' || *line == 'E' || *line == 'W')
+	if (*line == '0' || *line == '1' || *line == 'N'
+		|| *line == 'S' || *line == 'E' || *line == 'W')
 		return (1);
 	return (0);
 }
 
 void	check_missing_elements(t_map *map_info)
 {
-	if (map_info->n_path == NULL || map_info->s_path == NULL ||
-		map_info->w_path == NULL || map_info->e_path == NULL)
+	if (map_info->n_path == NULL || map_info->s_path == NULL
+		|| map_info->w_path == NULL || map_info->e_path == NULL)
 		free_exit("Missing texture path(s).", map_info, 1);
-	if (map_info->f_rgb[0] == -1 || map_info->f_rgb[1] == -1 ||
-		map_info->f_rgb[2] == -1 || map_info->c_rgb[0] == -1 ||
-		map_info->c_rgb[1] == -1 || map_info->c_rgb[2] == -1)
+	if (map_info->f_rgb[0] == -1 || map_info->f_rgb[1] == -1
+		|| map_info->f_rgb[2] == -1 || map_info->c_rgb[0] == -1
+		|| map_info->c_rgb[1] == -1 || map_info->c_rgb[2] == -1)
 		free_exit("Missing color value(s).", map_info, 1);
 }

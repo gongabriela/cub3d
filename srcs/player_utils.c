@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:03:26 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/12 14:06:08 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:32:52 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ bool	touch(float px, float py, t_game *game)
 	int	grid_x;
 	int	grid_y;
 
-	 /* compute grid index from pixel coordinates; cast after division to
-		 avoid integer-division surprises and ensure correct cell index */
-	 grid_x = (int)(px / BLOCK);
-	 grid_y = (int)(py / BLOCK);
-	if (grid_x < 0 || grid_x >= game->map_info.width || grid_y < 0 || grid_y >= game->map_info.height)
+	grid_x = (int)(px / BLOCK);
+	grid_y = (int)(py / BLOCK);
+	if (grid_x < 0 || grid_x >= game->map_info.width || grid_y < 0
+		|| grid_y >= game->map_info.height)
 		return (true);
 	if (game->map_info.map[grid_y][grid_x] == 1)
 		return (true);

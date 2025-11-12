@@ -6,7 +6,7 @@
 #    By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/11/11 11:50:32 by ggoncalv         ###   ########.fr        #
+#    Updated: 2025/11/12 14:13:00 by ggoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ MLX = ./minilibx/minilibx.a
 
 SRCS_DIR = ./srcs/
 SRCS =	$(addprefix $(SRCS_DIR), 	main.c \
+									free.c \
 									init.c \
 									hooks.c \
 									ray_casting.c \

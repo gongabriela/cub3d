@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:06:37 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/12 14:06:08 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:32:18 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	update_raycasting_values(t_game *game, int i)
 	game->r.raydiry = sin(game->r.ray_angle);
 	game->r.mapx = (int)game->r.posx;
 	game->r.mapy = (int)game->r.posy;
-	/* protect against raydir == 0 (vertical/horizontal rays) to avoid
-	   potential NaN/Inf issues: use a large number as deltadist when raydir == 0 */
 	if (game->r.raydirx == 0.0f)
 		game->r.deltadistx = 1e30f;
 	else
@@ -77,7 +75,8 @@ void	perform_dda(t_game *g)
 			g->r.side = 1;
 		}
 		if (g->r.mapx < 0 || g->r.mapy < 0
-			|| g->r.mapx >= g->map_info.width || g->r.mapy >= g->map_info.height)
+			|| g->r.mapx >= g->map_info.width
+			|| g->r.mapy >= g->map_info.height)
 			break ;
 		if (g->map_info.map[g->r.mapy][g->r.mapx] == 1)
 			break ;

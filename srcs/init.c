@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/11 16:04:31 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:31:55 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	init_texture(t_game *game, t_texture *t, char *path)
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->mlx_win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
+	game->mlx_win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT,
+			"cub3d");
 	init_img(game);
 	init_player(game);
 	rgb_to_int(game);
