@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:11:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/12 11:57:25 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:58:31 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	init_struct(t_map *map_info)
 	map_info->char_matrix = NULL;
 	map_info->ff_matrix = NULL;
 	map_info->map = NULL;
+	map_info->width = 0;
+	map_info->height = 0;
 }
 
 void	free_parsing(t_map *map_info)
@@ -74,7 +76,7 @@ void	free_parsing(t_map *map_info)
 	if (map_info->ff_matrix != NULL)
 		free_matrix((void **)map_info->ff_matrix);
 	if (map_info->map != NULL)
-		free_matrix((void **)map_info->map);
+		free_matrix_int(map_info);
 }
 
 void	free_gnl(t_map *map_info)
@@ -102,6 +104,21 @@ void	free_matrix(void **matrix)
 		i++;
 	}
 	free(matrix);
+}
+
+void	free_matrix_int(t_map *map)
+{
+	int	i;
+
+	if (!map->map)
+		return ;
+	i = 0;
+	while (i < (map->height))
+	{
+		free(map->map[i]);
+		i++;
+	}
+	free(map->map);
 }
 
 void	free_exit(char *msg, t_map *map_info, int code)

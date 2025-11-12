@@ -18,15 +18,6 @@ void    parse_map(t_map *map_info)
     create_ff_matrix(map_info);
     flood_fill(map_info->ff_matrix, map_info, map_info->player_pos[0], map_info->player_pos[1]);
     create_int_matrix(map_info);
-    //print_int_matrix
-    for (int i = 0; i < map_info->height; i++)
-    {
-        for (int j = 0; j < map_info->width; j++)
-        {
-            printf("%d ", map_info->map[i][j]);
-        }
-        printf("\n");
-    }
 }
 
 void    flood_fill(char **matrix, t_map *map_info, int x, int y)
@@ -51,7 +42,8 @@ static void	allocate_int_rows(t_map *map_info)
     i = 0;
     while (i < map_info->height)
     {
-        map_info->map[i] = malloc(sizeof(int) * (map_info->width));
+        /* allocate and zero the row to avoid uninitialized ints */
+        map_info->map[i] = ft_calloc(map_info->width, sizeof(int));
         if (!map_info->map[i])
             free_exit("Memory allocation failed for int_matrix row.", map_info, 1);
         i++;

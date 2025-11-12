@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 17:13:31 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/12 12:32:57 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:58:10 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ void		free_exit(char *msg, t_map *map_info, int code);
 void		free_gnl(t_map *map_info);
 void		free_matrix(void **matrix);
 int			main(int argc, char **argv);
+void		free_matrix_int(t_map *map);
 
 // parser.c
 int			parser(int argc, char **argv, t_map *map_info);

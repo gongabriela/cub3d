@@ -18,7 +18,7 @@ int	parser(int argc, char **argv, t_map *map_info)
 		return (free_exit("Invalid number of arguments.", map_info, 1), 1);
 	if (open_map(argv[1], map_info))
 		return (1);
-	if (parse_file(map_info)) //talvez nao precise disto!
+	if (parse_file(map_info))
 		return (1);
 	close(map_info->filename_fd);
 	map_info->filename_fd = -1;
