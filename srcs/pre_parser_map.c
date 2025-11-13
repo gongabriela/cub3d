@@ -6,7 +6,7 @@
 /*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:50:16 by ggoncalv          #+#    #+#             */
-/*   Updated: 2025/11/12 14:18:28 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/13 13:00:36 by ggoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,20 @@ void	check_map_line_validity(char *line, t_map *map_info)
 	while (line[i] == ' ')
 		i++;
 	if (line[i] == '\n' || line[i] == '\r' || line[i] == '\0')
-		free_exit("Empty line in map", map_info, 1);
+		free_exit("Invalid map.", map_info, 1);
 	while (line[i] && line[i] != '\n' && line[i] != '\r')
 	{
 		if (!ft_strchr(" 01NSEW", line[i]))
-			free_exit("Invalid character in map", map_info, 1);
+			free_exit("Invalid map.", map_info, 1);
 		if (ft_strchr("NSEW", line[i]))
 			player_count++;
 		if (player_count > 1)
-			free_exit("Multiple player start positions found", map_info, 1);
+			free_exit("Invalid map.", map_info, 1);
 		i++;
 	}
 	if (line[i] == '\0')
 	{
 		if (player_count == 0)
-			free_exit("No player start position found in map", map_info, 1);
+			free_exit("Invalid map.", map_info, 1);
 	}
 }

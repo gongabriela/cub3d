@@ -61,6 +61,11 @@ int	get_rgb_value(char **line, t_map *map_info)
 	if (!tmp)
 		return (free_exit("Memory allocation failed.", map_info, 1), -1);
 	nbr = ft_atoi(tmp);
+	if (nbr < 0 || nbr > 255)
+	{
+		free(tmp);
+		return (free_exit("Invalid RGB value.", map_info, 1), -1);
+	}
 	free(tmp);
 	return (nbr);
 }

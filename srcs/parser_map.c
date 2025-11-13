@@ -30,8 +30,8 @@ void	parse_map(t_map *map_info)
 void	flood_fill(char **matrix, t_map *map_info, int x, int y)
 {
 	if (!matrix[x][y] || matrix[x][y] == '\n' || matrix[x][y] == '\r'
-		|| matrix[x][y] == '\0' || matrix[x][y] == 'X' || matrix[x][y] == ' ')
-		free_exit("Map is not surrounded by walls.", map_info, 1);
+		|| matrix[x][y] == '\0' || matrix[x][y] == 'X')
+		free_exit("Invalid map.", map_info, 1);
 	else if (matrix[x][y] == '1' || matrix[x][y] == 'V')
 		return ;
 	matrix[x][y] = 'V';
