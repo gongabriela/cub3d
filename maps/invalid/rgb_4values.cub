@@ -3,8 +3,9 @@ WE ./textures/west.xpm
 NO ./textures/north.xpm
 EA ./textures/east.xpm
 
-F 101,183,65,20
-C 123,211,234,20
+F 20,20,20,20
+C 200,200,200,200
+
 
 1111111111
 1000000001
