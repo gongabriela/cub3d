@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/11/13 12:49:55 by ggoncalv         ###   ########.fr        #
+#    Updated: 2025/11/13 20:43:29 by jpedro-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,24 +73,22 @@ MAKE = make
 #                               RULES & DEPS                                   #
 #==============================================================================#
 
-all: $(MLX) $(LIBFT) $(NAME)
-
-%.o: $(SRCS_DIR)%.c
-	$(C_COMP) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	@$(C_COMP) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBFT) -o $(NAME)
+	@echo $(GREEN) "$(NAME) was created successfully!" $(RESET)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
+	@touch $(LIBFT)
 
 $(MLX):
 	@if [ ! -d "$(MLX_DIR)" ]; then \
-	echo $(YELLOW) "Cloning MiniLibX..." $(RESET); \
-	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
+		echo $(YELLOW) "Cloning MiniLibX..." $(RESET); \
+		git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
 	fi
 	@$(MAKE) -C $(MLX_DIR)
+	@touch $(MLX)
 
-$(NAME): $(MLX) $(OBJS) $(LIBFT)
-	@$(C_COMP) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
-	@echo $(GREEN) "$(NAME) was created successfully!" $(RESET)
 
 #==============================================================================#
 #                                  CLEAN RULES                                 #

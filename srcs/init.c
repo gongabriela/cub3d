@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 16:44:13 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/11/12 14:31:55 by ggoncalv         ###   ########.fr       */
+/*   Updated: 2025/11/13 20:30:41 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	init_game(t_game *game)
 	init_player(game);
 	rgb_to_int(game);
 	init_raycasting(game);
-	init_texture(game, &game->n, game->map_info.n_path);
-	init_texture(game, &game->s, game->map_info.s_path);
-	init_texture(game, &game->e, game->map_info.e_path);
-	init_texture(game, &game->w, game->map_info.w_path);
+	init_texture(game, &game->n, game->map_info.s_path);
+	init_texture(game, &game->s, game->map_info.n_path);
+	init_texture(game, &game->e, game->map_info.w_path);
+	init_texture(game, &game->w, game->map_info.e_path);
 }
