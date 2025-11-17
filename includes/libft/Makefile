@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jpedro-f <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 11:24:47 by jpedro-f          #+#    #+#              #
-#    Updated: 2024/10/30 11:24:49 by jpedro-f         ###   ########.fr        #
+#    Updated: 2025/11/17 11:54:53 by ggoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,10 @@ SRCS =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c f
 ft_isprint.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memset.c ft_strchr.c ft_strdup.c ft_strlcat.c \
 ft_strlcpy.c ft_strlen.c ft_strnstr.c ft_strncmp.c ft_tolower.c ft_toupper.c ft_strrchr.c \
 ft_substr.c ft_strjoin.c ft_memmove.c ft_strtrim.c ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c \
-ft_putendl_fd.c ft_striteri.c ft_itoa.c ft_split.c ft_strmapi.c ft_strcmp.c
-
-# Add all .c files from ft_get_next_line and ft_printf
-SRCS += $(wildcard ft_get_next_line/*.c)
-SRCS += $(wildcard ft_printf/*.c)
+ft_putendl_fd.c ft_striteri.c ft_itoa.c ft_split.c ft_strmapi.c ft_strcmp.c \
+ft_get_next_line/get_next_line_bonus.c ft_get_next_line/get_next_line_utils_bonus.c \
+ft_printf/ft_printf.c ft_printf/print_char.c ft_printf/print_hexa.c ft_printf/print_nbr.c \
+ft_printf/print_ptr.c ft_printf/print_str.c ft_printf/print_unbr.c \
 
 BONUS_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
@@ -60,11 +59,11 @@ bonus: $(NAME) $(BONUS_OBJS)
 
 # clean rule removes .o from srcs
 clean:
-	rm -rf $(OBJS) $(BONUS_OBJS)
+	@rm -rf $(OBJS) $(BONUS_OBJS)
 
 # fclean rule runs clean then removes libft.a
 fclean: clean 
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 # re rule runs fclean then runs make again
 re: fclean

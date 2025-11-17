@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+         #
+#    By: ggoncalv <ggoncalv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 17:25:58 by jpedro-f          #+#    #+#              #
-#    Updated: 2025/11/13 20:43:29 by jpedro-f         ###   ########.fr        #
+#    Updated: 2025/11/17 11:45:06 by ggoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,8 @@ MAKE = make
 #                               RULES & DEPS                                   #
 #==============================================================================#
 
+all: $(NAME)
+
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	@$(C_COMP) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBFT) -o $(NAME)
 	@echo $(GREEN) "$(NAME) was created successfully!" $(RESET)
@@ -101,20 +103,20 @@ valgrind:
 
 clean:
 	@$(RM) $(OBJS)
+	@$(MAKE) clean -C $(LIBFT_DIR)
 	@echo $(RED) "All .o files were deleted!" $(RESET)
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(MAKE) fclean -C $(LIBFT_DIR)
 	@echo $(RED) "$(NAME) was deleted!" $(RESET)
 
 fcleanall: clean fclean
-	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(MLX_DIR) clean
 	@rm -rf $(MLX_DIR)
 	@clear
 	@echo $(RED)"-> $(NAME), .o files, mlx and libft removed"$(RESET)
 
-
-re: fclean all
+re: fclean $(NAME)
 
 .PHONY: all clean fclean re cleanall fcleanall
